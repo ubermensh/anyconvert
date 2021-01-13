@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -11,9 +12,21 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          web calculator
         </h1>
 
+          <Link href="/percent/33" className={styles.card}>
+            <a>Cтраница конвертации конкретного числа </a>
+          </Link>
+      <h3>all other:</h3>
+          <Link href="/what-percent-of-8888-is-34" className={styles.card}>
+            <a>what-percent-of-8888-is-34</a>
+          </Link>
+
+          <Link href="/what-is-13%25-off-100" className={styles.card}>
+            <a>what-is-13%-off-100</a>
+          </Link>
+{/* 
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
@@ -47,18 +60,10 @@ export default function Home() {
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
           </a>
-        </div>
+        </div> */}
       </main>
 
       <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
       </footer>
     </div>
   )
