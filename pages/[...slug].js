@@ -1,16 +1,10 @@
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 
-export default function Main (props) {
-    console.log( 'props', props);
-
+export default function Main ({total, partial, percentage}) {
     return (
         <>
-            {/* <head> */}
-                {/* <title>{q}</title> */}
-                {/* <meta name="keywords" content= { metacontent } /> */}
-            {/* </head> */}
-                {/* <h4>query: {q}</h4> */}
+        <h2>{partial} is {percentage} of {total}</h2>
         <ul>
                     <li> What is X% off Y</li>
                     <li>What % of X is Y</li>
@@ -24,55 +18,27 @@ export default function Main (props) {
 // export default Main
 
 export async function getServerSideProps(context) {
-
-    console.log('query' , context.query);
-    //what percent of totalValue is partial value
-    // switch (q) {
-    //     case 'What*':
-    //         console.log('what 1');
-    //         break;
-    //     default:
-    //         console.log(`redirect 404 - ${q}.`);
-    // }
-    // let param1, param2;
-
-    function percentage(partialValue, totalValue) {
-        return (100 * partialValue) / totalValue;
-    }
-    const ololo = 'oooo';
+    let partial, total;
+    let first = true;
+    context.query.slug[0].split('-').map(
+        (val) => {
+            if(!isNaN(val)){
+                if(first) {
+                    total = Number(val)
+                    first = false;
+                }
+                else(
+                    partial = Number(val)
+                )
+            }
+        }
+    )
+    console.log(total, partial);
+    // const per= (100 * partial) / total; 
+    const percentage = Number(((100 * partial) / total).toFixed(2))
+    const props = {total, partial, percentage};
 
   return {
-    props: {ololo}, // will be passed to the page component as props
+    props 
   }
 }
-
-// posts will be populated at build time by getStaticProps()
-// function Blog({ posts }) {
-//     return (
-//       <ul>
-//         {posts.map((post) => (
-//           <li>{post.title}</li>
-//         ))}
-//       </ul>
-//     )
-//   }
-  
-//   // This function gets called at build time on server-side.
-//   // It won't be called on client-side, so you can even do
-//   // direct database queries. See the "Technical details" section.
-//   export async function getStaticProps() {
-//     // Call an external API endpoint to get posts.
-//     // You can use any data fetching library
-//     // const res = await fetch('https://.../posts')
-//     // const posts = await res.json()
-//    const posts = [ {title: 'ololo'}]
-//     // By returning { props: posts }, the Blog component
-//     // will receive `posts` as a prop at build time
-//     return {
-//       props: {
-//         posts,
-//       },
-//     }
-//   }
-  
-//   export default Blog
