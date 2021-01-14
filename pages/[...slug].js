@@ -36,7 +36,7 @@ export default function Main({ total, partial, percentage, question }) {
                         <h3>Х+1</h3>
                         <ul>
                             {Array.from(new Array(10).keys()).map(index => (
-                                <li><Link href={formatUrl(index)}><a>{ formatQuestion(index)}</a></Link></li>
+                                <li key={index}><Link href={formatUrl(index)}><a>{ formatQuestion(index)}</a></Link></li>
                             ))
                             }
                         </ul>
@@ -45,7 +45,7 @@ export default function Main({ total, partial, percentage, question }) {
                         <h3>Y+1</h3>
                         <ul>
                             {Array.from(new Array(10).keys()).map(index => (
-                                <li><Link href={formatUrl(index, true)}><a>{ formatQuestion(index, true)}</a></Link></li>
+                                <li key={index}><Link href={formatUrl(index, true)}><a>{ formatQuestion(index, true)}</a></Link></li>
                             ))
                             }
                         </ul>
@@ -54,7 +54,7 @@ export default function Main({ total, partial, percentage, question }) {
                         <h3>Х+0.1</h3>
                         <ul>
                             {Array.from(new Array(10).keys()).map(index => (
-                                <li><Link href={formatUrl(index+0.1)}><a>{ formatQuestion(index+0.1)}</a></Link></li>
+                                <li key={index}><Link href={formatUrl(index+0.1)}><a>{ formatQuestion(index+0.1)}</a></Link></li>
                             ))
                             }
                         </ul>
@@ -63,7 +63,7 @@ export default function Main({ total, partial, percentage, question }) {
                         <h3>Y+0.1</h3>
                         <ul>
                             {Array.from(new Array(10).keys()).map(index => (
-                                <li><Link href={formatUrl(index+0.1, true)}><a>{ formatQuestion(index+0.1, true)}</a></Link></li>
+                                <li key={index}><Link href={formatUrl(index+0.1, true)}><a>{ formatQuestion(index+0.1, true)}</a></Link></li>
                             ))
                             }
                         </ul>
@@ -93,7 +93,7 @@ export async function getServerSideProps(context) {
             }
         }
     )
-    const question = q.replaceAll('-', ' ');
+    const question = q.replace(new RegExp('-', 'g'), ' ');
     const percentage = Number(((100 * partial) / total).toFixed(2))
     const props = { total, partial, percentage, question };
 
