@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Percent converter</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -15,18 +15,15 @@ export default function Home() {
           web calculator
         </h1>
 
-          <Link href="/percent/33" className={styles.card}>
-            <a>Cтраница конвертации конкретного числа </a>
-          </Link>
-      <h3>all other:</h3>
-          <Link href="/what-percent-of-8888-is-34" className={styles.card}>
-            <a>what-percent-of-8888-is-34</a>
-          </Link>
+        <h3>all other:</h3>
+        <Link href="/what-percent-of-8888-is-34" className={styles.card}>
+          <a>what percent of 8888 is 34</a>
+        </Link>
 
-          <Link href="/what-is-13%25-off-100" className={styles.card}>
-            <a>what-is-13%-off-100</a>
-          </Link>
-{/* 
+        <Link href="/what-is-13-percent-of-100" className={styles.card}>
+          <a>what is 13% of 100</a>
+        </Link>
+        {/* 
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
