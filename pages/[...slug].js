@@ -23,7 +23,7 @@ export default function Main({ total, partial, percentage, question }) {
                     <h2>{partial} is {percentage} percent of {total}</h2>
                 </div>
                 <div className={styles.grid}>
-                    <section className={styles.card}>
+                    {/* <section className={styles.card}>
                         <h3>другими формулами</h3>
                         <ul>
                             <li><Link href={`/what-is-${total}-of-${partial}`}><a> What is {total}% of {partial}</a></Link></li>
@@ -31,7 +31,7 @@ export default function Main({ total, partial, percentage, question }) {
                             <li><Link href={`/${total}-is-${partial}-of-what-number`}><a> {total} is {partial} percent of what number? </a></Link></li>
                             <li><Link href={`/${total}-is-what-percent-of-${partial}`}><a>{total} is what percent of {partial}</a></Link></li>
                         </ul>
-                    </section>
+                    </section> */}
                     <section className={styles.card}>
                         <h3>Х+1</h3>
                         <ul>
