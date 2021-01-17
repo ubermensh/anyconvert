@@ -84,18 +84,18 @@ export async function getServerSideProps(context) {
         (val) => {
             if (!isNaN(val)) {
                 if (first) {
-                    total = Number(val)
+                    partial = Number(val)
                     first = false;
                 }
                 else (
-                    partial = Number(val)
+                    total = Number(val)
                 )
             }
         }
     )
     const question = q.replace(new RegExp('-', 'g'), ' ');
     const percentage = Number(((100 * partial) / total).toFixed(2))
-    const props = { total, partial, percentage, question };
+    const props = { partial, total, percentage, question };
 
     return {
         props
