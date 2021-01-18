@@ -3,25 +3,37 @@ import Head from 'next/head'
 import Link from 'next/link';
 import styles from '../styles/Home.module.css'
 
-export default function Main({ total, partial, percentage, question }) {
+export default function Main({ total, partial, percentage, question, closeValues }) {
     const router = useRouter()
     const url = router.query.slug[0];
+    console.log(closeValues);
 
-    function formatQuestion(index, isForTotal=false) {
-        return isForTotal ? question.replace(total, total + index +1 ): question.replace(partial, partial + index +1 )
+    function formatQuestion(index, isForTotal = false) {
+        return isForTotal ? question.replace(total, total + index + 1) : question.replace(partial, partial + index + 1)
     }
-    function formatUrl(index, isForTotal=false) {
-        return isForTotal ? url.replace(total, total + index +1 ): url.replace(partial, partial + index +1 )
+    function formatUrl(index, isForTotal = false) {
+        return isForTotal ? url.replace(total, total + index + 1) : url.replace(partial, partial + index + 1)
         // return 'aaaa' + index
     }
     return (
         <div className={styles.container}>
             <main className={styles.main}>
-<h1><Link href='/'><a>main page</a></Link></h1>
+                <h1><Link href='/'><a>main page</a></Link></h1>
                 <div className={styles.description}>
                     <h2>{question}?</h2>
                     <h2>{partial} is {percentage} percent of {total}</h2>
                 </div>
+                <h3>what is {partial}% of {total} and other numbers </h3>
+                <section style={{width:"100%"}}>
+                    <ul style={{ columnCount: 4, columnGap: "10px" }}>
+                        {Object.keys(closeValues).map((currentTotal, i) => (
+                            <li key={i}>
+                                <span>{partial}% of {currentTotal} = {closeValues[currentTotal]} </span>
+                            </li>
+                        ))}
+                    </ul>
+
+                </section>
                 <div className={styles.grid}>
                     {/* <section className={styles.card}>
                         <h3>другими формулами</h3>
@@ -36,16 +48,16 @@ export default function Main({ total, partial, percentage, question }) {
                         <h3>Х+1</h3>
                         <ul>
                             {Array.from(new Array(10).keys()).map(index => (
-                                <li key={index}><Link href={formatUrl(index)}><a>{ formatQuestion(index)}</a></Link></li>
+                                <li key={index}><Link href={formatUrl(index)}><a>{formatQuestion(index)}</a></Link></li>
                             ))
                             }
                         </ul>
                     </section>
-                     <section className={styles.card}>
+                    <section className={styles.card}>
                         <h3>Y+1</h3>
                         <ul>
                             {Array.from(new Array(10).keys()).map(index => (
-                                <li key={index}><Link href={formatUrl(index, true)}><a>{ formatQuestion(index, true)}</a></Link></li>
+                                <li key={index}><Link href={formatUrl(index, true)}><a>{formatQuestion(index, true)}</a></Link></li>
                             ))
                             }
                         </ul>
@@ -54,7 +66,7 @@ export default function Main({ total, partial, percentage, question }) {
                         <h3>Х+0.1</h3>
                         <ul>
                             {Array.from(new Array(10).keys()).map(index => (
-                                <li key={index}><Link href={formatUrl(index+0.1)}><a>{ formatQuestion(index+0.1)}</a></Link></li>
+                                <li key={index}><Link href={formatUrl(index + 0.1)}><a>{formatQuestion(index + 0.1)}</a></Link></li>
                             ))
                             }
                         </ul>
@@ -63,7 +75,7 @@ export default function Main({ total, partial, percentage, question }) {
                         <h3>Y+0.1</h3>
                         <ul>
                             {Array.from(new Array(10).keys()).map(index => (
-                                <li key={index}><Link href={formatUrl(index+0.1, true)}><a>{ formatQuestion(index+0.1, true)}</a></Link></li>
+                                <li key={index}><Link href={formatUrl(index + 0.1, true)}><a>{formatQuestion(index + 0.1, true)}</a></Link></li>
                             ))
                             }
                         </ul>
@@ -95,7 +107,19 @@ export async function getServerSideProps(context) {
     )
     const question = q.replace(new RegExp('-', 'g'), ' ');
     const percentage = Number(((100 * partial) / total).toFixed(2))
-    const props = { partial, total, percentage, question };
+    function getCloseValues() {
+        let currentTotal = total;
+        let oneTenth = currentTotal / 10;
+        let res = {};
+        for (let i = 0; i <= 16; i++) {
+            currentTotal += oneTenth;
+            res[currentTotal] = Number(((100 * partial) / currentTotal).toFixed(2))
+        }
+        return res;
+    }
+
+    const closeValues = getCloseValues()
+    const props = { partial, total, percentage, question, closeValues };
 
     return {
         props

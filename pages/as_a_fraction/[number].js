@@ -40,6 +40,16 @@ export async function getServerSideProps(context) {
             return {numerator, denominator};
         }
     }
+
+// function numberOfZeros(n) {
+//   var c = 0;
+//   while (!~~n) {
+//     c++;
+//     n *= 10;
+//   }
+//   return c - 1;
+// }
+
 const {numerator, denominator} = fraction(number, 1);
     const props = { number, numerator, denominator };
 
