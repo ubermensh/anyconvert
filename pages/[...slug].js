@@ -6,14 +6,12 @@ import styles from '../styles/Home.module.css'
 export default function Main({ total, partial, percentage, question, closeValues }) {
     const router = useRouter()
     const url = router.query.slug[0];
-    console.log(closeValues);
 
     function formatQuestion(index, isForTotal = false) {
         return isForTotal ? question.replace(total, total + index + 1) : question.replace(partial, partial + index + 1)
     }
     function formatUrl(index, isForTotal = false) {
         return isForTotal ? url.replace(total, total + index + 1) : url.replace(partial, partial + index + 1)
-        // return 'aaaa' + index
     }
     return (
         <div className={styles.container}>
@@ -85,8 +83,6 @@ export default function Main({ total, partial, percentage, question, closeValues
         </div>
     )
 }
-
-// export default Main
 
 export async function getServerSideProps(context) {
     let partial, total;
