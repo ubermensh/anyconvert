@@ -60,6 +60,7 @@ export default function Main({ total, partial, percentage, question, closeValues
                     </p>
                 </div>
                 <section style={{ width: "100%" }}>
+                    <h3>close values:</h3>
                     <ul style={{ columnCount: 4, columnGap: "10px" }}>
                         {Object.keys(closeValues).map((currentTotal, i) => (
                             <li key={i}>
