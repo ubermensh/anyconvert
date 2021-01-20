@@ -48,7 +48,6 @@ How to convert {number} to a fraction:
                         }
                     </ul>
                 </section>
-
             </main>
         </div>
     )

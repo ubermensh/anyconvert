@@ -16,13 +16,50 @@ export default function Main({ total, partial, percentage, question, closeValues
     return (
         <div className={styles.container}>
             <main className={styles.main}>
-                <h1><Link href='/'><a>main page</a></Link></h1>
+                <h1><Link href='/'><a>to the main page</a></Link></h1>
+                {/* <h1><Link href='/'><a>main page</a></Link></h1>
                 <div className={styles.description}>
                     <h2>{question}?</h2>
                     <h2>{partial} is {percentage} percent of {total}</h2>
                 </div>
                 <h3>what is {partial}% of {total} and other numbers </h3>
                 <section style={{width:"100%"}}>
+                    <ul style={{ columnCount: 4, columnGap: "10px" }}>
+                        {Object.keys(closeValues).map((currentTotal, i) => (
+                            <li key={i}>
+                                <span>{partial}% of {currentTotal} = {closeValues[currentTotal]} </span>
+                            </li>
+                        ))}
+                    </ul>
+
+                </section> */}
+                <div >
+                    <p>
+                    What is {partial} percent (calculated percentage %) of number {total}?  <br />
+                    What is {partial} per cent of the number {total}? <br />
+                    Percentage {partial}% of number {total} = ? <br />
+                    {partial}% of {total} is equal to their multiplication: {partial}% * {total}. <br/>
+                    {partial} percent of {total}: {partial}% of {total} = {partial}/100 * {total} = {percentage} <br />
+</p>
+                    <p>
+                        <b>To calculate what is 25 per cent of 70:</b>
+                        <ol start='1'>
+                            <ul>{partial}%*{total} = </ul>
+                            <ul>({partial}:100)*{total} = </ul>
+                            <ul>({partial}*{total}):100 = </ul>
+                            <ul>{partial * total}:100={percentage}</ul>
+                        </ol>
+                    </p>
+                    <p>
+                        Example:
+                    If a product costs {total} and you were given a {partial}% discount, you will save ${percentage} <br/>
+                    Savings: Original price * percentage off / 100  <br/>
+                    Amount saved: ({partial} * {total}) / 100 =<br/>
+                    Savings: ${percentage}<br/>
+                    That means for an original price of {total} and a {partial}% discount, you would pay ${total - percentage} and save ${percentage}
+                    </p>
+                </div>
+                <section style={{ width: "100%" }}>
                     <ul style={{ columnCount: 4, columnGap: "10px" }}>
                         {Object.keys(closeValues).map((currentTotal, i) => (
                             <li key={i}>
