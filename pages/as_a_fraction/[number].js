@@ -6,11 +6,12 @@ const Decimal = require('decimal.js')
 export default function Fraction({ number, numerator, denominator, hNumerator, hDenominator, closeValues }) {
     console.log(number, numerator, denominator, hNumerator, hDenominator );
     console.log(closeValues);
+
     return (
         <div className={styles.container}>
             <main className={styles.main}>
                 <h3><Link href="/" className={styles.card}><a>back</a></Link></h3>
-                <div className={styles.description}>
+                <div>
                     <h2>{number} as a fraction</h2>
                 </div>
                 <div className={styles.card}>
@@ -25,20 +26,29 @@ How to convert {number} to a fraction:
                     {denominator != hDenominator &&
                         <b>or more convenient notation: {hNumerator}/{hDenominator}</b>
                     }
-
                 </div>
                 <div className={styles.card}>
-                    <h3>close values</h3>
+                    <h3>close values in convenient notation</h3>
                     <ul style={{ columnCount: 2, columnGap: "50px" }}>
                         {Object.keys(closeValues).map((currentNumber, i) => (
                             <li key={i}>
-                                <span>{currentNumber} as a fraction =
-                                     {closeValues[currentNumber][0]}/{closeValues[currentNumber][1]}
+                                <span>{currentNumber} as a fraction equals {closeValues[currentNumber][0]}/{closeValues[currentNumber][1]}
                                 </span>
                             </li>
                         ))}
                     </ul>
                 </div>
+
+                <section className={styles.card}>
+                    <h3>Links</h3>
+                    <ul>
+                        {Object.keys(closeValues).map(index => (
+                            <li key={index}><Link href={`/as_a_fraction/${index}`} ><a>What is {index} as a fraction</a></Link></li>
+                        ))
+                        }
+                    </ul>
+                </section>
+
             </main>
         </div>
     )
@@ -68,7 +78,7 @@ export async function getServerSideProps(context) {
     function getCloseValuesDecimal() {
         let res = {};
         let currentNumber = decimalNumber;
-        for (let i = 0; i <= 8; i++) {
+        for (let i = 0; i <= 10; i++) {
             // currentNumber += 0.1;
             currentNumber = currentNumber.plus(0.1);
             // res[currentNumber] = fraction(currentNumber, 1)
