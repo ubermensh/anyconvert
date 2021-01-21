@@ -10,51 +10,98 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
                 <div className={styles.backButton}>
                     <Link rel="icon" href="/">
                         <img src="../backArrow.svg"></img>
-                        </Link>
+                    </Link>
                 </div>
                 <span className={styles.headerText}>
                     Fraction Calculator
                 </span>
             </div>
-            <main className={styles.main}>
-                <div>
-                    <h2>{number} as a fraction</h2>
-                </div>
-                <div className={styles.card}>
-                    What is {number} as a fraction?
-How to convert {number} to a fraction:
-                    <ol>
-                        <li> Write {number} as the numerator</li>
-                        <li>Write 1 as the denominator</li>
-                        <li>multiply numerator and denominator by 10 as long as you get in numerator the whole number: {number}/1={numerator}/{denominator}</li>
-                    </ol>
-                So, <b>{number} as a fraction is {numerator}/{denominator}</b> <br /><br />
-                    {denominator != hDenominator &&
-                        <b>or more convenient notation: {hNumerator}/{hDenominator}</b>
-                    }
-                </div>
-                <div className={styles.card}>
-                    <h3>close values in convenient notation</h3>
-                    <ul style={{ columnCount: 2, columnGap: "50px" }}>
-                        {Object.keys(closeValues).map((currentNumber, i) => (
-                            <li key={i}>
-                                <span>{currentNumber} as a fraction equals {closeValues[currentNumber][0]}/{closeValues[currentNumber][1]}
-                                </span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
 
-                <section className={styles.card}>
-                    <h3>Links</h3>
-                    <ul>
-                        {Object.keys(closeValues).map(index => (
-                            <li key={index}><Link href={`/as_a_fraction/${index}`} ><a>What is {index} as a fraction</a></Link></li>
-                        ))
-                        }
-                    </ul>
-                </section>
-            </main>
+            <div className={styles.question}>
+                <span>What is {number} as a fraction?</span>
+            </div>
+            <div className={styles.answer}>
+                <h2>
+                    {number} as a fraction is <span className={styles.green}>
+                        {numerator}/{denominator}
+                        {denominator != hDenominator && <b> or {hNumerator}/{hDenominator}</b>}
+                    </span>
+                </h2>
+            </div>
+
+            <div className={styles.calculator}>
+                <div>calculate any fraction</div>
+                <form>
+                    <input name="name" type="number" value="Frank" />
+                    <select name="type" > <option value="asafraction"></option>as a fraction </select>
+                    <button type="submit" value="Submit">calculate</button>
+                </form>
+            </div>
+
+            <div className={styles.card}>
+                How to convert {number} to a fraction?
+                <ol>
+                    <li> Write {number} as the numerator</li>
+                    <li>Write 1 as the denominator</li>
+                    <li>multiply numerator and denominator by 10 as long as you get in numerator
+                        the whole number:  <span className={styles.green}>{number}/1={numerator}/{denominator}</span></li>
+                </ol>
+
+                <b>Answer: <span className={styles.green}>
+                    {number} as a fraction is {numerator}/{denominator}
+                    {denominator != hDenominator &&
+                        <b> or {hNumerator}/{hDenominator}</b>
+                    }
+                </span>
+                </b>
+            </div>
+
+            <div className={styles.card}>
+                table snippet
+            </div>
+
+            <div className={styles.card}>
+                Experess {number} as a fraction step by step
+                <ul>
+                    <li> <span className={styles.green}>step 1: </span> Write {number} as <span className={styles.boldUnder}>{number}/1</span></li>
+                    <li><span className={styles.green}>step 2: </span>Multiply both numerator ({number}) and denominator (1) by 10 for every number
+                     after the decimal point: hardcoded!!!! {number} × todo/1 × todo= <span className={styles.boldUnder}>{numerator}/{denominator}</span></li>
+                    {denominator != hDenominator &&
+                    <li> <span className={styles.green}>step 3: </span>Reduce the fraction: <span className={styles.boldUnder}>{hNumerator}/{hDenominator}</span></li>
+                    }
+                </ul>
+                <b> <span className={styles.green}>
+                    { denominator != hDenominator ?
+                    `(reduced) fractional number equivalent of ${number} is ${numerator}/${denominator} or ${hNumerator}/${hDenominator}`
+                     :
+                    `fractional number equivalent of ${number} is ${numerator}/${denominator}`
+                    }
+                </span>
+                </b>
+
+            </div>
+            <div className={styles.card}>
+                <h3>close to {number} values as a fraction</h3>
+                {/* todo: links */}
+                <ul style={{ columnCount: 2, columnGap: "50px" }}>
+                    {Object.keys(closeValues).map((currentNumber, i) => (
+                        <li key={i}>
+                            <span>{currentNumber} as a fraction equals {closeValues[currentNumber][0]}/{closeValues[currentNumber][1]}
+                            </span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            <section className={styles.card}>
+                <h3>Links</h3>
+                <ul>
+                    {Object.keys(closeValues).map(index => (
+                        <li key={index}><Link href={`/as_a_fraction/${index}`} ><a>What is {index} as a fraction</a></Link></li>
+                    ))
+                    }
+                </ul>
+            </section>
+
         </div>
     )
 }
