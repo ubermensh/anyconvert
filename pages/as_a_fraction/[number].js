@@ -4,13 +4,19 @@ import styles from '../../styles/Home.module.css'
 const Decimal = require('decimal.js')
 
 export default function Fraction({ number, numerator, denominator, hNumerator, hDenominator, closeValues }) {
-    console.log(number, numerator, denominator, hNumerator, hDenominator );
-    console.log(closeValues);
-
     return (
         <div className={styles.container}>
+            <div className={styles.header}>
+                <div className={styles.backButton}>
+                    <Link rel="icon" href="/">
+                        <img src="../backArrow.svg"></img>
+                        </Link>
+                </div>
+                <span className={styles.headerText}>
+                    Fraction Calculator
+                </span>
+            </div>
             <main className={styles.main}>
-                <h3><Link href="/" className={styles.card}><a>back</a></Link></h3>
                 <div>
                     <h2>{number} as a fraction</h2>
                 </div>
@@ -22,7 +28,7 @@ How to convert {number} to a fraction:
                         <li>Write 1 as the denominator</li>
                         <li>multiply numerator and denominator by 10 as long as you get in numerator the whole number: {number}/1={numerator}/{denominator}</li>
                     </ol>
-                So, <b>{number} as a fraction is {numerator}/{denominator}</b> <br/><br/>
+                So, <b>{number} as a fraction is {numerator}/{denominator}</b> <br /><br />
                     {denominator != hDenominator &&
                         <b>or more convenient notation: {hNumerator}/{hDenominator}</b>
                     }
