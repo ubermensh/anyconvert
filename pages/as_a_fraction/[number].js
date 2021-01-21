@@ -6,13 +6,13 @@ const Decimal = require('decimal.js')
 export default function Fraction({ number, numerator, denominator, hNumerator, hDenominator, closeValues }) {
     return (
         <div className={styles.container}>
-            <div className={styles.header}>
+            <div className={styles.top}>
                 <div className={styles.backButton}>
                     <Link rel="icon" href="/">
                         <img src="../backArrow.svg"></img>
                     </Link>
                 </div>
-                <span className={styles.headerText}>
+                <span className={styles.topText}>
                     Fraction Calculator
                 </span>
             </div>
@@ -39,7 +39,7 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
             </div>
 
             <div className={styles.card}>
-                How to convert {number} to a fraction?
+                <span className={styles.header}>How to convert {number} to a fraction?</span>
                 <ol>
                     <li> Write {number} as the numerator</li>
                     <li>Write 1 as the denominator</li>
@@ -55,13 +55,15 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
                 </span>
                 </b>
             </div>
-
+            
             <div className={styles.card}>
                 table snippet
+                <table>
+                </table>
             </div>
 
             <div className={styles.card}>
-                Experess {number} as a fraction step by step
+                <span className={styles.header}>Experess {number} as a fraction step by step</span>
                 <ul>
                     <li> <span className={styles.green}>step 1: </span> Write {number} as <span className={styles.boldUnder}>{number}/1</span></li>
                     <li><span className={styles.green}>step 2: </span>Multiply both numerator ({number}) and denominator (1) by 10 for every number
@@ -78,7 +80,20 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
                     }
                 </span>
                 </b>
+            </div>
+            <div className={styles.card}>
+                <span className={styles.header}>Q: What is {number} as a fraction in simplest form?</span><br/>
+                A: {number} as a simplified fraction is {hNumerator}/{hDenominator}
+            </div>
 
+            <div className={styles.card}>
+                <span className={styles.header}>Q: What is {number} as a fraction in simplest form?</span><br/>
+                A: {number} as a simplified fraction is {hNumerator}/{hDenominator}
+            </div>
+
+            <div className={styles.card}>
+                <span className={styles.header}>Q: What is {number} as a fraction in simplest form?</span><br/>
+                A: {number} as a simplified fraction is {hNumerator}/{hDenominator}
             </div>
             <div className={styles.card}>
                 <h3>close to {number} values as a fraction</h3>

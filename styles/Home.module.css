@@ -5,11 +5,11 @@
   align-items: center;
 }
 
-.header {
+.top {
   width: 100%;
   display: flex;
   flex-direction: row;
-  background-color: lightblue;
+  background-color: #BFE0FF;
   height: 47px;
   text-align: center;
 }
@@ -24,32 +24,42 @@
   justify-content: center;
 }
 
-.headerText {
+.topText {
   margin-left: 10px;
   margin-top: 15px;
   display: inline-block;
   vertical-align: middle;
+  font-size: 18px;
+  line-height: 21px;
 }
+
 .question {
   margin-top: 30px;
+  font-size: 24px;
+  line-height: 28px;
 }
 
 .answer {
   margin: 30px;
+  font-size: 36px;
+  line-height: 42px;
 }
+
 .green {
   color: #22BB32;
 
 }
+
 .calculator {
-width: 567px;
-height: 142px;
-left: 50px;
-top: 238px;
-background: #D6E6FF;
-border-radius: 8px;
-text-align: center;
+  width: 567px;
+  height: 142px;
+  left: 50px;
+  top: 238px;
+  background: #D6E6FF;
+  border-radius: 8px;
+  text-align: center;
 }
+
 /* Answer: 0.45 as a fraction is 45/100 or 9/20 */
 
 
@@ -66,11 +76,16 @@ text-align: center;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
 }
+
 .boldUnder {
   font-weight: bold;
   text-decoration: underline;
 }
 
+.header {
+  font-size: 24px;
+  line-height: 28px;
+}
 
 
 
