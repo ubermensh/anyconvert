@@ -8,11 +8,8 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
     const router = useRouter()
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => {
-        console.log(data);
         router.push(`/as_a_fraction/${data.fraction}`)
     };
-
-    // console.log(watch("example"));
 
     return (
         <div className={styles.container}>
@@ -42,8 +39,8 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
             <div className={styles.calculator}>
                 <div>calculate any fraction</div>
                 <form onSubmit={handleSubmit(onSubmit)} >
-                    <input name="fraction" type="number"  ref={register({ required: true })} onChange={()=> {}}  />
-                    <select name="type" ref={register} onChange={()=> {}} > <option value="fraction">as a fraction</option> </select>
+                    <input name="fraction" type="number" ref={register({ required: true })} onChange={() => { }} />
+                    <select name="type" ref={register} onChange={() => { }} > <option value="fraction">as a fraction</option> </select>
                     <button type="submit" value="Submit">calculate</button>
                 </form>
             </div>
@@ -111,22 +108,13 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
                 <ul style={{ columnCount: 2, columnGap: "50px" }}>
                     {Object.keys(closeValues).map((currentNumber, i) => (
                         <li key={i}>
-                            <span>{currentNumber} as a fraction equals {closeValues[currentNumber][0]}/{closeValues[currentNumber][1]}
+                            <Link href={`/as_a_fraction/${currentNumber}`}><a>{currentNumber} as a fraction equals {closeValues[currentNumber][0]}/{closeValues[currentNumber][1]}</a></Link>
+                            <span>
                             </span>
                         </li>
                     ))}
                 </ul>
             </div>
-            <section className={styles.card}>
-                <h3>Links</h3>
-                <ul>
-                    {Object.keys(closeValues).map(index => (
-                        <li key={index}><Link href={`/as_a_fraction/${index}`} ><a>What is {index} as a fraction</a></Link></li>
-                    ))
-                    }
-                </ul>
-            </section>
-
         </div>
     )
 }
