@@ -4,7 +4,8 @@ import styles from '../../styles/Home.module.css'
 const Decimal = require('decimal.js')
 import { useForm } from "react-hook-form";
 
-export default function Fraction({ number, numerator, denominator, hNumerator, hDenominator, closeValues }) {
+export default function Fraction({ number, numerator, denominator, hNumerator, hDenominator, closeValues, forTable }) {
+    console.log(forTable);
     const router = useRouter()
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => {
@@ -19,10 +20,9 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
                         <img src="../backArrow.svg"></img>
                     </Link>
                 </div>
-                <span className={styles.topText}>
-                    Fraction Calculator
-                </span>
+                <span className={styles.topText}> Fraction Calculator </span>
             </div>
+
 
             <div className={styles.question}>
                 <span>What is {number} as a fraction?</span>
@@ -44,14 +44,29 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
                     <button type="submit" value="Submit">calculate</button>
                 </form>
             </div>
-
+            <div className={styles.card}>
+                <table> <thead> <tr>
+                            {Object.keys(forTable).map((row, i) => (
+                                <th key={i}>{row}</th>
+                            ))}
+                        </tr> </thead> <tbody>
+                        {[...Array(forTable.decimal.length).keys()].map((i) => 
+                            <tr key={i}>
+                                <td>{forTable.decimal[i]}</td>
+                                <td>{forTable.simplified[i][0]}/{forTable.simplified[i][1]}</td>
+                                <td>{forTable.fraction[i][0]}/{forTable.fraction[i][1]}</td>
+                                <td>{forTable.percentage[i]}</td>
+                            </tr>
+                        ) }
+                    </tbody> </table>
+            </div>
             <div className={styles.card}>
                 <span className={styles.header}>How to convert {number} to a fraction?</span>
                 <ol>
                     <li> Write {number} as the numerator</li>
                     <li>Write 1 as the denominator</li>
                     <li>multiply numerator and denominator by 10 as long as you get in numerator
-                        the whole number:  <span className={styles.green}>{number}/1={numerator}/{denominator}</span></li>
+                            the whole number:  <span className={styles.green}>{number}/1={numerator}/{denominator}</span></li>
                 </ol>
 
                 <b>Answer: <span className={styles.green}>
@@ -63,11 +78,6 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
                 </b>
             </div>
 
-            <div className={styles.card}>
-                table snippet
-                <table>
-                </table>
-            </div>
 
             <div className={styles.card}>
                 <span className={styles.header}>Experess {number} as a fraction step by step</span>
@@ -153,13 +163,35 @@ export async function getServerSideProps(context) {
         return res
     }
 
+    function getValuesForTable() {
+        const res = {
+            'decimal': [],
+            'simplified': [],
+            'fraction': [],
+            'percentage': []
+        }
+        let currentNumber = decimalNumber;
+        for (let i = 0; i <= 10; i++) {
+
+            currentNumber = currentNumber.plus(0.1);
+            res.decimal.push(Number(currentNumber))
+            res.simplified.push(fractionDecimal(currentNumber))
+            res.fraction.push(fractionRecursive(Number(currentNumber), 1))
+            res.percentage.push(currentNumber * 100)
+        }
+        return res
+
+    }
+
     const [numerator, denominator] = fractionRecursive(number, 1)
     const [hNumerator, hDenominator] = fractionDecimal(decimalNumber)
 
     const closeValues = getCloseValuesDecimal()
+    const forTable = getValuesForTable()
 
 
-    const props = { number, numerator, denominator, hNumerator, hDenominator, closeValues };
+
+    const props = { number, numerator, denominator, hNumerator, hDenominator, closeValues, forTable };
     return { props }
 }
 
