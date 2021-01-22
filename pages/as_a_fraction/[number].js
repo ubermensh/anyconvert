@@ -2,8 +2,18 @@ import { useRouter } from 'next/router'
 import Link from 'next/link';
 import styles from '../../styles/Home.module.css'
 const Decimal = require('decimal.js')
+import { useForm } from "react-hook-form";
 
 export default function Fraction({ number, numerator, denominator, hNumerator, hDenominator, closeValues }) {
+    const router = useRouter()
+    const { register, handleSubmit, errors } = useForm();
+    const onSubmit = data => {
+        console.log(data);
+        router.push(`/as_a_fraction/${data.fraction}`)
+    };
+
+    // console.log(watch("example"));
+
     return (
         <div className={styles.container}>
             <div className={styles.top}>
@@ -31,9 +41,9 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
 
             <div className={styles.calculator}>
                 <div>calculate any fraction</div>
-                <form>
-                    <input name="name" type="number" value="Frank" />
-                    <select name="type" > <option value="asafraction"></option>as a fraction </select>
+                <form onSubmit={handleSubmit(onSubmit)} >
+                    <input name="fraction" type="number"  ref={register({ required: true })} onChange={()=> {}}  />
+                    <select name="type" ref={register} onChange={()=> {}} > <option value="fraction">as a fraction</option> </select>
                     <button type="submit" value="Submit">calculate</button>
                 </form>
             </div>
@@ -55,7 +65,7 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
                 </span>
                 </b>
             </div>
-            
+
             <div className={styles.card}>
                 table snippet
                 <table>
@@ -69,30 +79,30 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
                     <li><span className={styles.green}>step 2: </span>Multiply both numerator ({number}) and denominator (1) by 10 for every number
                      after the decimal point: hardcoded!!!! {number} × todo/1 × todo= <span className={styles.boldUnder}>{numerator}/{denominator}</span></li>
                     {denominator != hDenominator &&
-                    <li> <span className={styles.green}>step 3: </span>Reduce the fraction: <span className={styles.boldUnder}>{hNumerator}/{hDenominator}</span></li>
+                        <li> <span className={styles.green}>step 3: </span>Reduce the fraction: <span className={styles.boldUnder}>{hNumerator}/{hDenominator}</span></li>
                     }
                 </ul>
                 <b> <span className={styles.green}>
-                    { denominator != hDenominator ?
-                    `(reduced) fractional number equivalent of ${number} is ${numerator}/${denominator} or ${hNumerator}/${hDenominator}`
-                     :
-                    `fractional number equivalent of ${number} is ${numerator}/${denominator}`
+                    {denominator != hDenominator ?
+                        `(reduced) fractional number equivalent of ${number} is ${numerator}/${denominator} or ${hNumerator}/${hDenominator}`
+                        :
+                        `fractional number equivalent of ${number} is ${numerator}/${denominator}`
                     }
                 </span>
                 </b>
             </div>
             <div className={styles.card}>
-                <span className={styles.header}>Q: What is {number} as a fraction in simplest form?</span><br/>
+                <span className={styles.header}>Q: What is {number} as a fraction in simplest form?</span><br />
                 A: {number} as a simplified fraction is {hNumerator}/{hDenominator}
             </div>
 
             <div className={styles.card}>
-                <span className={styles.header}>Q: What is {number} as a fraction in simplest form?</span><br/>
+                <span className={styles.header}>Q: What is {number} as a fraction in simplest form?</span><br />
                 A: {number} as a simplified fraction is {hNumerator}/{hDenominator}
             </div>
 
             <div className={styles.card}>
-                <span className={styles.header}>Q: What is {number} as a fraction in simplest form?</span><br/>
+                <span className={styles.header}>Q: What is {number} as a fraction in simplest form?</span><br />
                 A: {number} as a simplified fraction is {hNumerator}/{hDenominator}
             </div>
             <div className={styles.card}>
