@@ -32,23 +32,6 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
             </div>
             <Calculator />
             <div className={styles.card}>
-                <table> <thead> <tr>
-                    <th>Decimal</th>
-                    <th>Simplified Fraction</th>
-                    <th>Fraction</th>
-                    <th>Percentage</th>
-                </tr> </thead> <tbody>
-                        {[...Array(forTable.decimal.length).keys()].map((i) =>
-                            <tr key={i}>
-                                <td>{forTable.decimal[i]}</td>
-                                <td>{forTable.simplified[i][0]}/{forTable.simplified[i][1]}</td>
-                                <td>{forTable.fraction[i][0]}/{forTable.fraction[i][1]}</td>
-                                <td>{forTable.percentage[i]}%</td>
-                            </tr>
-                        )}
-                    </tbody> </table>
-            </div>
-            <div className={styles.card}>
                 <span className={styles.header}>How to convert {number} to a fraction?</span>
                 <ol>
                     <li> Write {number} as the numerator</li>
@@ -64,6 +47,24 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
                     }
                 </span>
                 </b>
+            </div>
+
+            <div id={styles.cardTable}>
+                <table id={styles.valuesTable}> <thead> <tr>
+                    <th>Decimal</th>
+                    <th>Simplified Fraction</th>
+                    <th>Fraction</th>
+                    <th>Percentage</th>
+                </tr> </thead> <tbody>
+                        {[...Array(forTable.decimal.length).keys()].map((i) =>
+                            <tr key={i}>
+                                <td>{forTable.decimal[i]}</td>
+                                <td>{forTable.simplified[i][0]}/{forTable.simplified[i][1]}</td>
+                                <td>{forTable.fraction[i][0]}/{forTable.fraction[i][1]}</td>
+                                <td>{forTable.percentage[i]}%</td>
+                            </tr>
+                        )}
+                    </tbody> </table>
             </div>
 
 

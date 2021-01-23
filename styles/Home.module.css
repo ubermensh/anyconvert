@@ -104,7 +104,6 @@
 }
 
 #calculator #dropdown {
-  border: 1px solid #9F9F9F;
   border-radius: 8px;
   width: 169px;
   height: 34px;
@@ -123,7 +122,6 @@
 #calculator #button {
   width: 126px;
   height: 34px;
-  border: 1px solid #9F9F9F;
   border-radius: 8px;
   width: 126px;
   background: #3F8CFF;
@@ -134,9 +132,34 @@
   text-align: center;
   color: #FFFFFF;
 }
+#cardTable{
+  width: 90%;
+  /* background-color: #F4F9FF; */
+  margin: 1rem;
+  flex-basis: 45%;
+  padding: 1rem;
+  width: 700px;
+}
+#valuesTable {
+  width: 100%;
+  background: #f5fff0;
+}
+
+#valuesTable th, #valuesTable td {
+  text-align: center; 
+  vertical-align: middle;
+  height: 30px;
+  /* width: 40px; */
+}
+#valuesTable tr:nth-child(even) {
+  background-color: #defcdf;
+}
+#valuesTable th {
+  background: #94f59e;
+}
 
 .card {
-  width: 90%;
+  width: 700px;
   background-color: #F4F9FF;
   margin: 1rem;
   flex-basis: 45%;

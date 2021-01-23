@@ -21,7 +21,6 @@ function Calculator() {
                     <div className={styles.column}>
                         <select id={styles.dropdown} name="type" ref={register} onChange={() => { }} > <option value="fraction">as a fraction</option> </select>
                     </div>
-                       
                     <div className={styles.column}> <span id={styles.equal}>=</span> </div>
                     <div className={styles.column}>
                          <button id={styles.button} type="submit" value="Submit">CALCULATE</button>
