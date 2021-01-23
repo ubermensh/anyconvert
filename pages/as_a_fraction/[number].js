@@ -1,16 +1,11 @@
-import { useRouter } from 'next/router'
 import Link from 'next/link';
 import styles from '../../styles/Home.module.css'
 const Decimal = require('decimal.js')
 import { useForm } from "react-hook-form";
+import Calculator from "../../components/Calculator"
 
 export default function Fraction({ number, numerator, denominator, hNumerator, hDenominator, closeValues, forTable }) {
     console.log(forTable);
-    const router = useRouter()
-    const { register, handleSubmit, errors } = useForm();
-    const onSubmit = data => {
-        router.push(`/as_a_fraction/${data.fraction}`)
-    };
 
     return (
         <div className={styles.container}>
@@ -35,15 +30,7 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
                     </span>
                 </h2>
             </div>
-
-            <div className={styles.calculator}>
-                <div>calculate any fraction</div>
-                <form onSubmit={handleSubmit(onSubmit)} >
-                    <input name="fraction" type="number" step="any" ref={register({ required: true })} onChange={() => { }} />
-                    <select name="type" ref={register} onChange={() => { }} > <option value="fraction">as a fraction</option> </select>
-                    <button type="submit" value="Submit">calculate</button>
-                </form>
-            </div>
+            <Calculator />
             <div className={styles.card}>
                 <table> <thead> <tr>
                     <th>Decimal</th>
