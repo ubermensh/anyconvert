@@ -46,16 +46,17 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
             </div>
             <div className={styles.card}>
                 <table> <thead> <tr>
-                            {Object.keys(forTable).map((row, i) => (
-                                <th key={i}>{row}</th>
-                            ))}
+                                <th>Decimal</th>
+                                <th>Simplified Fraction</th>
+                                <th>Fraction</th>
+                                <th>Percentage</th>
                         </tr> </thead> <tbody>
                         {[...Array(forTable.decimal.length).keys()].map((i) => 
                             <tr key={i}>
                                 <td>{forTable.decimal[i]}</td>
                                 <td>{forTable.simplified[i][0]}/{forTable.simplified[i][1]}</td>
                                 <td>{forTable.fraction[i][0]}/{forTable.fraction[i][1]}</td>
-                                <td>{forTable.percentage[i]}</td>
+                                <td>{forTable.percentage[i]}%</td>
                             </tr>
                         ) }
                     </tbody> </table>
@@ -134,14 +135,18 @@ export async function getServerSideProps(context) {
     const number = Number(context.query.number);
     const decimalNumber = new Decimal(number);
 
-    function fractionRecursive(numerator, denominator) {
-        numerator *= 10;
-        denominator *= 10;
-        if (numerator % 1 != 0) {
-            return fractionRecursive(numerator, denominator)
-        } else {
-            return [numerator, denominator];
+    function fractionOrderTen(n) {
+        let st = String(n).split('.');
+        let num, de
+        if (st[1]) {
+        num = Number(st[0].concat(st[1]))
+        de = Math.pow(10, st[1].length)
         }
+        else {
+            num = n * 10
+            de = 10
+        }
+        return [num, de]
     }
 
     function fractionDecimal(num) {
@@ -176,14 +181,13 @@ export async function getServerSideProps(context) {
             currentNumber = currentNumber.plus(0.1);
             res.decimal.push(Number(currentNumber))
             res.simplified.push(fractionDecimal(currentNumber))
-            res.fraction.push(fractionRecursive(Number(currentNumber), 1))
-            //todo 0.00000000000000003
-            res.percentage.push(currentNumber * 100)
+            res.fraction.push(fractionOrderTen(currentNumber))
+            res.percentage.push((currentNumber * 100).toFixed(2))
         }
         return res
     }
 
-    const [numerator, denominator] = fractionRecursive(number, 1)
+    const [numerator, denominator] = fractionOrderTen(number, 1)
     const [hNumerator, hDenominator] = fractionDecimal(decimalNumber)
 
     const closeValues = getCloseValuesDecimal()
