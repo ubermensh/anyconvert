@@ -39,7 +39,7 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
             <div className={styles.calculator}>
                 <div>calculate any fraction</div>
                 <form onSubmit={handleSubmit(onSubmit)} >
-                    <input name="fraction" type="number" ref={register({ required: true })} onChange={() => { }} />
+                    <input name="fraction" type="number" step="any" ref={register({ required: true })} onChange={() => { }} />
                     <select name="type" ref={register} onChange={() => { }} > <option value="fraction">as a fraction</option> </select>
                     <button type="submit" value="Submit">calculate</button>
                 </form>
@@ -172,15 +172,15 @@ export async function getServerSideProps(context) {
         }
         let currentNumber = decimalNumber;
         for (let i = 0; i <= 10; i++) {
-
+            //todo various step
             currentNumber = currentNumber.plus(0.1);
             res.decimal.push(Number(currentNumber))
             res.simplified.push(fractionDecimal(currentNumber))
             res.fraction.push(fractionRecursive(Number(currentNumber), 1))
+            //todo 0.00000000000000003
             res.percentage.push(currentNumber * 100)
         }
         return res
-
     }
 
     const [numerator, denominator] = fractionRecursive(number, 1)
@@ -188,8 +188,6 @@ export async function getServerSideProps(context) {
 
     const closeValues = getCloseValuesDecimal()
     const forTable = getValuesForTable()
-
-
 
     const props = { number, numerator, denominator, hNumerator, hDenominator, closeValues, forTable };
     return { props }
