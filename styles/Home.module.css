@@ -137,12 +137,12 @@
   /* background-color: #F4F9FF; */
   margin: 1rem;
   flex-basis: 45%;
-  padding: 1rem;
+  /* padding: 1rem; */
   width: 700px;
 }
 #valuesTable {
   width: 100%;
-  background: #f5fff0;
+  background: #edf9ff;
 }
 
 #valuesTable th, #valuesTable td {
@@ -152,10 +152,12 @@
   /* width: 40px; */
 }
 #valuesTable tr:nth-child(even) {
-  background-color: #defcdf;
+  background-color: #d4e0ff;
 }
 #valuesTable th {
-  background: #94f59e;
+  /* background: #94c6f5; */
+
+  background: #92BDFF;
 }
 
 .card {
