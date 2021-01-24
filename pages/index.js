@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import Calculator from '../components/Calculator'
+import FractionForm from '../components/FractionForm'
 
 export default function Home() {
   return (
@@ -19,9 +20,10 @@ export default function Home() {
 
         <Calculator />
 
-        <Link href="/what-is-13-percent-of-100" className={styles.card}><a>what is 13% of 100</a></Link>
-         <br />
         <Link href="/as_a_fraction/0.45" className={styles.card}><a>0.45 as a fraction</a></Link>
+        <FractionForm />
+
+        <Link href="/what-is-13-percent-of-100" className={styles.card}><a>what is 13% of 100</a></Link>
         {/* <Link href="/what-percent-of-8888-is-34" className={styles.card}><a>what percent of 8888 is 34</a></Link> */}
         {/* <Link href={`/what-is-45-of-100`}><a>What is 45% of 100</a></Link> 
         <Link href={`/what-percent-of-12-is-123`}><a> What % of 12 is 123</a></Link>

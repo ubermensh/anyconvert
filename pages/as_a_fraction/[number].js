@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import Calculator from "../../components/Calculator"
 
 export default function Fraction({ number, numerator, denominator, hNumerator, hDenominator, closeValues, forTable }) {
-    console.log(forTable);
 
     return (
         <div className={styles.container}>

@@ -114,7 +114,7 @@
 }
 
 #calculator #equal {
-  font-size: 36px;
+  font-size: 30px;
   text-align: center;
   color: #000000;
 }
@@ -142,7 +142,7 @@
 }
 #valuesTable {
   width: 100%;
-  background: #edf9ff;
+  background: #f4f9ff;
 }
 
 #valuesTable th, #valuesTable td {
@@ -152,8 +152,9 @@
   /* width: 40px; */
 }
 #valuesTable tr:nth-child(even) {
-  background-color: #d4e0ff;
+  background-color: #d6e6ff;
 }
+
 #valuesTable th {
   /* background: #94c6f5; */
 
