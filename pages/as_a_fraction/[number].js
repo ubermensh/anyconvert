@@ -1,22 +1,15 @@
 import Link from 'next/link';
 import styles from '../../styles/Home.module.css'
 const Decimal = require('decimal.js')
-import { useForm } from "react-hook-form";
 import Calculator from "../../components/Calculator"
+import Top from "../../components/Top"
 
 export default function Fraction({ number, numerator, denominator, hNumerator, hDenominator, closeValues, forTable }) {
 
     return (
         <div className={styles.container}>
-            <div className={styles.top}>
-                <div className={styles.backButton}>
-                    <Link rel="icon" href="/">
-                        <img src="../backArrow.svg"></img>
-                    </Link>
-                </div>
-                <span className={styles.topText}> Fraction Calculator </span>
-            </div>
 
+        <Top text="Fraction Calculator" backButton="true" />
 
             <div className={styles.question}>
                 <span>What is {number} as a fraction?</span>

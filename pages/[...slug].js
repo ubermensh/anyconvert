@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link';
 import styles from '../styles/Home.module.css'
 import FractionForm from "../components/FractionForm"
+import Top from "../components/Top"
 
 export default function Main({ total, partial, percentage, question, closeValues }) {
     const router = useRouter()
@@ -15,10 +16,9 @@ export default function Main({ total, partial, percentage, question, closeValues
     }
     return (
         <div className={styles.container}>
-            <main className={styles.main}>
-            <FractionForm />
 
-                <h1><Link href='/'><a>to the main page</a></Link></h1>
+        <Top text="Percent Calculator" backButton="true" />
+            <FractionForm />
 
                 {/* <h1><Link href='/'><a>main page</a></Link></h1>
                 <div className={styles.description}>
@@ -120,7 +120,6 @@ export default function Main({ total, partial, percentage, question, closeValues
                         </ul>
                     </section>
                 </div>
-            </main>
         </div>
     )
 }
