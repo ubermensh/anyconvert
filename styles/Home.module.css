@@ -173,6 +173,12 @@
   transition: color 0.15s ease, border-color 0.15s ease;
 }
 
+.cardNoBackground {
+  width: 700px;
+  background-color: #F4F9FF;
+  margin: 1rem;
+}
+
 .boldUnder {
   font-weight: bold;
   text-decoration: underline;

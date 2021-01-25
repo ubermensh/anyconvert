@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from '../../styles/Home.module.css'
 const Decimal = require('decimal.js')
-import Calculator from "../../components/Calculator"
+import FractionForm from "../../components/FractionForm"
 import Top from "../../components/Top"
 
 export default function Fraction({ number, numerator, denominator, hNumerator, hDenominator, closeValues, forTable }) {
@@ -22,7 +22,7 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
                     </span>
                 </h2>
             </div>
-            <Calculator />
+            <FractionForm />
             <div className={styles.card}>
                 <span className={styles.header}>How to convert {number} to a fraction?</span>
                 <ol>

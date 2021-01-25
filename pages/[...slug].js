@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import Link from 'next/link';
 import styles from '../styles/Home.module.css'
-import FractionForm from "../components/FractionForm"
+import PercentForm from "../components/PercentForm"
 import Top from "../components/Top"
 
 export default function Main({ total, partial, percentage, question, closeValues }) {
@@ -16,26 +16,12 @@ export default function Main({ total, partial, percentage, question, closeValues
     }
     return (
         <div className={styles.container}>
-
         <Top text="Percent Calculator" backButton="true" />
-            <FractionForm />
 
-                {/* <h1><Link href='/'><a>main page</a></Link></h1>
-                <div className={styles.description}>
-                    <h2>{question}?</h2>
-                    <h2>{partial} is {percentage} percent of {total}</h2>
-                </div>
-                <h3>what is {partial}% of {total} and other numbers </h3>
-                <section style={{width:"100%"}}>
-                    <ul style={{ columnCount: 4, columnGap: "10px" }}>
-                        {Object.keys(closeValues).map((currentTotal, i) => (
-                            <li key={i}>
-                                <span>{partial}% of {currentTotal} = {closeValues[currentTotal]} </span>
-                            </li>
-                        ))}
-                    </ul>
+        <div className={styles.cardNoBackground}>
+            <PercentForm />
+        </div>
 
-                </section> */}
                 <div className={styles.card} >
                     <p>
                     What is {partial} percent (calculated percentage %) of number {total}?  <br />
