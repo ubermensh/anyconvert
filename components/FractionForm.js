@@ -8,7 +8,7 @@ function FractionForm() {
     const router = useRouter()
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => {
-        router.push(`/as_a_fraction/${data.fraction}`)
+        router.push(`/as-a-fraction/${data.fraction}`)
     };
     return (
         <div id={styles.calculator}>
