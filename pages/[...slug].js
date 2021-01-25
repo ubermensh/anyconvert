@@ -17,21 +17,18 @@ export default function Main({ total, partial, percentage, question, closeValues
     return (
         <div className={styles.container}>
         <Top text="Percent Calculator" backButton="true" />
-
         <div className={styles.cardNoBackground}>
             <PercentForm />
         </div>
 
                 <div className={styles.card} >
-                    <p>
                     What is {partial} percent (calculated percentage %) of number {total}?  <br />
                     What is {partial} per cent of the number {total}? <br />
                     Percentage {partial}% of number {total} = ? <br />
                     {partial}% of {total} is equal to their multiplication: {partial}% * {total}. <br/>
                     {partial} percent of {total}: {partial}% of {total} = {partial}/100 * {total} = {percentage} <br />
-</p>
                     <p>
-                        <b>To calculate what is 25 per cent of 70:</b>
+                        <span className={styles.header}>To calculate what is {partial} per cent of {total}:</span>
                         <ol start='1'>
                             <ul>{partial}%*{total} = </ul>
                             <ul>({partial}:100)*{total} = </ul>
@@ -40,7 +37,8 @@ export default function Main({ total, partial, percentage, question, closeValues
                         </ol>
                     </p>
                     <p>
-                        Example:
+                     <span className={styles.header}>Example:</span>
+                     <br />
                     If a product costs {total} and you were given a {partial}% discount, you will save ${percentage} <br/>
                     Savings: Original price * percentage off / 100  <br/>
                     Amount saved: ({partial} * {total}) / 100 =<br/>
@@ -48,7 +46,7 @@ export default function Main({ total, partial, percentage, question, closeValues
                     That means for an original price of {total} and a {partial}% discount, you would pay ${total - percentage} and save ${percentage}
                     </p>
                 </div>
-                <section style={{ width: "100%" }}>
+                <div className={styles.card}>
                     <h3>close values:</h3>
                     <ul style={{ columnCount: 4, columnGap: "10px" }}>
                         {Object.keys(closeValues).map((currentTotal, i) => (
@@ -58,7 +56,7 @@ export default function Main({ total, partial, percentage, question, closeValues
                         ))}
                     </ul>
 
-                </section>
+                </div>
                 <div className={styles.grid}>
                     {/* <section className={styles.card}>
                         <h3>другими формулами</h3>
