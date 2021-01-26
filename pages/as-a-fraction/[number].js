@@ -24,7 +24,9 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
             </div>
             <FractionForm />
             <div className={styles.card}>
-                <span className={styles.header}>How to convert {number} to a fraction?</span>
+                <h2>
+                    How to convert {number} to a fraction?
+                </h2>
                 <ol>
                     <li> Write {number} as the numerator</li>
                     <li>Write 1 as the denominator</li>
@@ -61,7 +63,7 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
 
 
             <div className={styles.card}>
-                <span className={styles.header}>Experess {number} as a fraction step by step</span>
+                <h2>Experess {number} as a fraction step by step</h2>
                 <ul>
                     <li> <span className={styles.green}>step 1: </span> Write {number} as <span className={styles.boldUnder}>{number}/1</span></li>
                     <li><span className={styles.green}>step 2: </span>Multiply both numerator ({number}) and denominator (1) by 10 for every number
