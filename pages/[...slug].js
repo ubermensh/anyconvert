@@ -40,6 +40,7 @@ export default function Main({ total, partial, percentage, question, closeValues
             </div>
             <div className={styles.card} >
                 <h2>How to calculate {partial} of {total}</h2>
+                {/* todo fix */}
                 <ul>
                     <ul>step 1: {partial}%*{total} = </ul>
                     <ul>step 2: ({partial}:100)*{total} = </ul>
@@ -141,7 +142,7 @@ export async function getServerSideProps(context) {
     )
     const question = q.replace(new RegExp('-', 'g'), ' ');
     // const percentage = Number(((100 * partial) / total).toFixed(2))
-    let percentage = partial.times(100).dividedBy(total)
+    let percentage = partial.dividedBy(100).times(total)
     function getCloseValues() {
         let currentTotal = total;
         let oneTenth = currentTotal.dividedBy(10);
@@ -149,7 +150,7 @@ export async function getServerSideProps(context) {
         for (let i = 0; i <= 16; i++) {
             currentTotal = currentTotal.plus(oneTenth);
             // res[Number(currentTotal)] = Number(((100 * partial) / currentTotal).toFixed(2))
-            res[Number(currentTotal)] = Number((partial.times(100).dividedBy(currentTotal)).toPrecision(4))
+            res[Number(currentTotal)] = Number((partial.dividedBy(100).times(currentTotal)).toPrecision(4))
         }
         return res;
     }
