@@ -16,94 +16,105 @@ export default function Main({ total, partial, percentage, question, closeValues
     }
     return (
         <div className={styles.container}>
-        <Top text="Percent Calculator" backButton="true" />
-        <div className={styles.cardNoBackground}>
-            <PercentForm />
-        </div>
+            <Top text="Percent Calculator" backButton="true" />
+            <div >
+                <h2> What is {partial} percent of {total}?</h2>
+            </div>
+            <div className={styles.answer}>
+                <h2>
+                    {partial} of {total} is <span className={styles.green}> {percentage} </span>
+                </h2>
+            </div>
+            <div className={styles.cardNoBackground}>
+                <PercentForm />
+            </div>
+            <div className={styles.card} >
+                <h2>How to calculate {partial} of {total}</h2>
+                <ul>
+                    <ul>step 1: {partial}%*{total} = </ul>
+                    <ul>step 2: ({partial}:100)*{total} = </ul>
+                    <ul>step 3: ({partial}*{total}):100 = </ul>
+                    <ul>step 4: {partial * total}:100={percentage}</ul>
+                </ul>
+                <b>Answer: <span className={styles.green}>{partial} of {total} is {percentage}</span></b>
+            </div>
+            <div className={styles.card}>
+                <h2>{partial}% of other values:</h2>
+                {/* todo table */}
+                <ul style={{ columnCount: 4, columnGap: "10px" }}>
+                    {Object.keys(closeValues).map((currentTotal, i) => (
+                        <li key={i}>
+                            <span>{partial}% of {currentTotal} = {closeValues[currentTotal]} </span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
 
-                <div className={styles.card} >
-                    What is {partial} percent (calculated percentage %) of number {total}?  <br />
-                    What is {partial} per cent of the number {total}? <br />
-                    Percentage {partial}% of number {total} = ? <br />
-                    {partial}% of {total} is equal to their multiplication: {partial}% * {total}. <br/>
-                    {partial} percent of {total}: {partial}% of {total} = {partial}/100 * {total} = {percentage} <br />
-                    <p>
-                        <span className={styles.header}>To calculate what is {partial} per cent of {total}:</span>
-                        <ol start='1'>
-                            <ul>{partial}%*{total} = </ul>
-                            <ul>({partial}:100)*{total} = </ul>
-                            <ul>({partial}*{total}):100 = </ul>
-                            <ul>{partial * total}:100={percentage}</ul>
-                        </ol>
-                    </p>
-                    <p>
-                     <span className={styles.header}>Example:</span>
-                     <br />
-                    If a product costs {total} and you were given a {partial}% discount, you will save ${percentage} <br/>
-                    Savings: Original price * percentage off / 100  <br/>
-                    Amount saved: ({partial} * {total}) / 100 =<br/>
-                    Savings: ${percentage}<br/>
-                    That means for an original price of {total} and a {partial}% discount, you would pay ${total - percentage} and save ${percentage}
-                    </p>
-                </div>
-                <div className={styles.card}>
-                    <h3>close values:</h3>
-                    <ul style={{ columnCount: 4, columnGap: "10px" }}>
-                        {Object.keys(closeValues).map((currentTotal, i) => (
-                            <li key={i}>
-                                <span>{partial}% of {currentTotal} = {closeValues[currentTotal]} </span>
-                            </li>
-                        ))}
+            <div className={styles.card} >
+                <h2>How much will you save if product costs {total} and discount is {partial}%</h2>
+                <b>Savings:</b> Original price * percentage off / 100  <br />
+            Amount saved: ({partial} * {total}) / 100 =<br />
+                <span className={styles.green}>Savings: ${percentage}<br /> <br />
+            That means for an original price of {total} and a {partial}% discount, you would pay ${total - percentage} and save ${percentage}
+                </span>
+            </div>
+            <div className={styles.card} >
+                <h2>
+                    What is {partial} percent (calculated percentage %) of number {total}?
+                </h2>
+                {partial}% of {total} is equal to their multiplication: {partial}% * {total}. <br />
+                {partial} percent of {total}:
+                    <ul>
+                    <li>{partial}% of {total} =</li>
+                    <li>{partial}/100 * {total} =</li>
+                    <li><span className={styles.green}> = {percentage}</span></li>
+                </ul>
+            </div>
+            <h4>What are the other percentages of {total}?</h4>
+            <div className={styles.grid}>
+                <section className={styles.card}>
+                    <h3>Х+1</h3>
+                    <ul>
+                        {Array.from(new Array(10).keys()).map(index => (
+                            <li key={index}><Link href={formatUrl(index)}><a>{formatQuestion(index)}</a></Link></li>
+                        ))
+                        }
                     </ul>
+                </section>
+                <section className={styles.card}>
+                    <h3>Х+0.1</h3>
+                    <ul>
+                        {Array.from(new Array(10).keys()).map(index => (
+                            <li key={index}><Link href={formatUrl(index + 0.1)}><a>{formatQuestion(index + 0.1)}</a></Link></li>
+                        ))
+                        }
+                    </ul>
+                </section>
+            </div>
 
-                </div>
-                <div className={styles.grid}>
-                    {/* <section className={styles.card}>
-                        <h3>другими формулами</h3>
-                        <ul>
-                            <li><Link href={`/what-is-${total}-of-${partial}`}><a> What is {total}% of {partial}</a></Link></li>
-                            <li><Link href={`/what-percent-of-${total}-is-${partial}`}><a> What % of {total} is {partial}</a></Link></li>
-                            <li><Link href={`/${total}-is-${partial}-of-what-number`}><a> {total} is {partial} percent of what number? </a></Link></li>
-                            <li><Link href={`/${total}-is-what-percent-of-${partial}`}><a>{total} is what percent of {partial}</a></Link></li>
-                        </ul>
-                    </section> */}
-                    <section className={styles.card}>
-                        <h3>Х+1</h3>
-                        <ul>
-                            {Array.from(new Array(10).keys()).map(index => (
-                                <li key={index}><Link href={formatUrl(index)}><a>{formatQuestion(index)}</a></Link></li>
-                            ))
-                            }
-                        </ul>
-                    </section>
-                    <section className={styles.card}>
-                        <h3>Y+1</h3>
-                        <ul>
-                            {Array.from(new Array(10).keys()).map(index => (
-                                <li key={index}><Link href={formatUrl(index, true)}><a>{formatQuestion(index, true)}</a></Link></li>
-                            ))
-                            }
-                        </ul>
-                    </section>
-                    <section className={styles.card}>
-                        <h3>Х+0.1</h3>
-                        <ul>
-                            {Array.from(new Array(10).keys()).map(index => (
-                                <li key={index}><Link href={formatUrl(index + 0.1)}><a>{formatQuestion(index + 0.1)}</a></Link></li>
-                            ))
-                            }
-                        </ul>
-                    </section>
-                    <section className={styles.card}>
-                        <h3>Y+0.1</h3>
-                        <ul>
-                            {Array.from(new Array(10).keys()).map(index => (
-                                <li key={index}><Link href={formatUrl(index + 0.1, true)}><a>{formatQuestion(index + 0.1, true)}</a></Link></li>
-                            ))
-                            }
-                        </ul>
-                    </section>
-                </div>
+
+            <h4> What is {partial}% of other values? </h4>
+            <div className={styles.grid}>
+
+                <section className={styles.card}>
+                    <h3>Y+1</h3>
+                    <ul>
+                        {Array.from(new Array(10).keys()).map(index => (
+                            <li key={index}><Link href={formatUrl(index, true)}><a>{formatQuestion(index, true)}</a></Link></li>
+                        ))
+                        }
+                    </ul>
+                </section>
+                <section className={styles.card}>
+                    <h3>Y+0.1</h3>
+                    <ul>
+                        {Array.from(new Array(10).keys()).map(index => (
+                            <li key={index}><Link href={formatUrl(index + 0.1, true)}><a>{formatQuestion(index + 0.1, true)}</a></Link></li>
+                        ))
+                        }
+                    </ul>
+                </section>
+            </div>
         </div>
     )
 }
@@ -145,3 +156,12 @@ export async function getServerSideProps(context) {
         props
     }
 }
+{/* <section className={styles.card}>
+                        <h3>другими формулами</h3>
+                        <ul>
+                            <li><Link href={`/what-is-${total}-of-${partial}`}><a> What is {total}% of {partial}</a></Link></li>
+                            <li><Link href={`/what-percent-of-${total}-is-${partial}`}><a> What % of {total} is {partial}</a></Link></li>
+                            <li><Link href={`/${total}-is-${partial}-of-what-number`}><a> {total} is {partial} percent of what number? </a></Link></li>
+                            <li><Link href={`/${total}-is-what-percent-of-${partial}`}><a>{total} is what percent of {partial}</a></Link></li>
+                        </ul>
+                    </section> */}
