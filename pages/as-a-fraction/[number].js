@@ -82,21 +82,21 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
                 </b>
             </div>
             <div className={styles.card}>
-                <span className={styles.header}>Q: What is {number} as a fraction in simplest form?</span><br />
+                <h2>Q: What is {number} as a fraction in simplest form?</h2><br />
+                A: {number} as a simplified fraction is {hNumerator}/{hDenominator}
+            </div>
+
+            {/* <div className={styles.card}>
+                <h2>Q: What is {number} as a fraction in simplest form?</h2><br />
                 A: {number} as a simplified fraction is {hNumerator}/{hDenominator}
             </div>
 
             <div className={styles.card}>
-                <span className={styles.header}>Q: What is {number} as a fraction in simplest form?</span><br />
+                <h2>Q: What is {number} as a fraction in simplest form?</h2><br />
                 A: {number} as a simplified fraction is {hNumerator}/{hDenominator}
-            </div>
-
+            </div> */}
             <div className={styles.card}>
-                <span className={styles.header}>Q: What is {number} as a fraction in simplest form?</span><br />
-                A: {number} as a simplified fraction is {hNumerator}/{hDenominator}
-            </div>
-            <div className={styles.card}>
-                <h3>close to {number} values as a fraction</h3>
+                <h4>close to {number} values as a fraction</h4>
                 {/* todo: links */}
                 <ul style={{ columnCount: 2, columnGap: "50px" }}>
                     {Object.keys(closeValues).map((currentNumber, i) => (
