@@ -3,16 +3,26 @@ import Link from 'next/link';
 import styles from '../styles/Home.module.css'
 import PercentForm from "../components/PercentForm"
 import Top from "../components/Top"
+const Decimal = require('decimal.js')
 
 export default function Main({ total, partial, percentage, question, closeValues }) {
     const router = useRouter()
     const url = router.query.slug[0];
 
     function formatQuestion(index, isForTotal = false) {
-        return isForTotal ? question.replace(total, total + index + 1) : question.replace(partial, partial + index + 1)
+        //todo check speed
+        const toReplace = isForTotal ?
+        new Decimal(total).plus(index).plus(1).toFixed(1)  
+        :
+        new Decimal(partial).plus(index).plus(1).toFixed(1)
+        return isForTotal ? question.replace(total, toReplace ) : question.replace(partial, toReplace)
     }
     function formatUrl(index, isForTotal = false) {
-        return isForTotal ? url.replace(total, total + index + 1) : url.replace(partial, partial + index + 1)
+        const toReplace = isForTotal ?
+        new Decimal(total).plus(index).plus(1).toFixed(1)  
+        :
+        new Decimal(partial).plus(index).plus(1).toFixed(1)
+        return isForTotal ? url.replace(total, toReplace) : url.replace(partial, toReplace)
     }
     return (
         <div className={styles.container}>
@@ -34,7 +44,7 @@ export default function Main({ total, partial, percentage, question, closeValues
                     <ul>step 1: {partial}%*{total} = </ul>
                     <ul>step 2: ({partial}:100)*{total} = </ul>
                     <ul>step 3: ({partial}*{total}):100 = </ul>
-                    <ul>step 4: {partial * total}:100={percentage}</ul>
+                    <ul>step 4: {new Decimal(partial).times(total).toPrecision(4) }:100={percentage}</ul>
                 </ul>
                 <b>Answer: <span className={styles.green}>{partial} of {total} is {percentage}</span></b>
             </div>
@@ -73,7 +83,6 @@ export default function Main({ total, partial, percentage, question, closeValues
             <h4>What are the other percentages of {total}?</h4>
             <div className={styles.grid}>
                 <section className={styles.card}>
-                    <h3>Х+1</h3>
                     <ul>
                         {Array.from(new Array(10).keys()).map(index => (
                             <li key={index}><Link href={formatUrl(index)}><a>{formatQuestion(index)}</a></Link></li>
@@ -82,7 +91,6 @@ export default function Main({ total, partial, percentage, question, closeValues
                     </ul>
                 </section>
                 <section className={styles.card}>
-                    <h3>Х+0.1</h3>
                     <ul>
                         {Array.from(new Array(10).keys()).map(index => (
                             <li key={index}><Link href={formatUrl(index + 0.1)}><a>{formatQuestion(index + 0.1)}</a></Link></li>
@@ -91,13 +99,9 @@ export default function Main({ total, partial, percentage, question, closeValues
                     </ul>
                 </section>
             </div>
-
-
             <h4> What is {partial}% of other values? </h4>
             <div className={styles.grid}>
-
                 <section className={styles.card}>
-                    <h3>Y+1</h3>
                     <ul>
                         {Array.from(new Array(10).keys()).map(index => (
                             <li key={index}><Link href={formatUrl(index, true)}><a>{formatQuestion(index, true)}</a></Link></li>
@@ -106,7 +110,6 @@ export default function Main({ total, partial, percentage, question, closeValues
                     </ul>
                 </section>
                 <section className={styles.card}>
-                    <h3>Y+0.1</h3>
                     <ul>
                         {Array.from(new Array(10).keys()).map(index => (
                             <li key={index}><Link href={formatUrl(index + 0.1, true)}><a>{formatQuestion(index + 0.1, true)}</a></Link></li>
@@ -127,29 +130,36 @@ export async function getServerSideProps(context) {
         (val) => {
             if (!isNaN(val)) {
                 if (first) {
-                    partial = Number(val)
+                    partial = new Decimal(val)
                     first = false;
                 }
                 else (
-                    total = Number(val)
+                    total =new Decimal(val)
                 )
             }
         }
     )
     const question = q.replace(new RegExp('-', 'g'), ' ');
-    const percentage = Number(((100 * partial) / total).toFixed(2))
+    // const percentage = Number(((100 * partial) / total).toFixed(2))
+    let percentage = partial.times(100).dividedBy(total)
     function getCloseValues() {
         let currentTotal = total;
-        let oneTenth = currentTotal / 10;
+        let oneTenth = currentTotal.dividedBy(10);
         let res = {};
         for (let i = 0; i <= 16; i++) {
-            currentTotal += oneTenth;
-            res[currentTotal] = Number(((100 * partial) / currentTotal).toFixed(2))
+            currentTotal = currentTotal.plus(oneTenth);
+            // res[Number(currentTotal)] = Number(((100 * partial) / currentTotal).toFixed(2))
+            res[Number(currentTotal)] = Number((partial.times(100).dividedBy(currentTotal)).toPrecision(4))
         }
         return res;
     }
 
     const closeValues = getCloseValues()
+
+    partial = Number(partial)
+    total = Number(total)
+    percentage = Number(percentage.toPrecision(4))
+
     const props = { partial, total, percentage, question, closeValues };
 
     return {
