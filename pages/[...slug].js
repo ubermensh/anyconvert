@@ -8,24 +8,47 @@ const Decimal = require('decimal.js')
 export default function Main({ total, partial, percentage, question, closeValues }) {
     const router = useRouter()
     const url = router.query.slug[0];
-
     function formatQuestion(index, isForTotal = false) {
         //todo check speed
         const toReplace = isForTotal ?
-        new Decimal(total).plus(index).plus(1).toFixed(1)  
-        :
-        new Decimal(partial).plus(index).plus(1).toFixed(1)
-        return isForTotal ? question.replace(total, toReplace ) : question.replace(partial, toReplace)
+            new Decimal(total).plus(index).plus(1).toFixed(1)
+            :
+            new Decimal(partial).plus(index).plus(1).toFixed(1)
+        return isForTotal ? question.replace(total, toReplace) : question.replace(partial, toReplace)
     }
     function formatUrl(index, isForTotal = false) {
         const toReplace = isForTotal ?
-        new Decimal(total).plus(index).plus(1).toFixed(1)  
-        :
-        new Decimal(partial).plus(index).plus(1).toFixed(1)
+            new Decimal(total).plus(index).plus(1).toFixed(1)
+            :
+            new Decimal(partial).plus(index).plus(1).toFixed(1)
         return isForTotal ? url.replace(total, toReplace) : url.replace(partial, toReplace)
     }
+    const title = `What is ${partial} percent of ${total}? = ${percentage} | How much is ${partial}% of ${total} | Percentage Calculator`
+    const meta1 = `Calculate what is ${partial}% of ${total} | Find out how much is ${partial} percent of ${total} with Percentage Calculator`
+    const meta2 = `💰  What is ${partial} percent of ${total}? = ${percentage} | How much is ${partial}% of ${total} | Percentage Calculator`
+    const base = 'https://anyconvert.vercel.app'
+    const currentUrl = `${base}${router.asPath}`
     return (
         <div className={styles.container}>
+            <head>
+                <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+                <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <title>{title}</title>
+                <meta name="description" content={meta1} />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={meta2} />
+                <meta name="twitter:description" content={meta1} />
+                <meta name="twitter:site" content="@" />
+                <meta name="twitter:creator" content="@" />
+                <meta name="twitter:image" content="" />
+                <meta property="og:title" content={meta2} />
+                <meta property="og:description" content={meta1} />
+                <meta property="og:url" content={currentUrl} />
+                <meta property="og:site_name" content={currentUrl} />
+                <meta property="og:type" content="website" />
+                <meta property="og:image" content="" />
+            </head>
             <Top text="Percent Calculator" backButton="true" />
             <div >
                 <h2> What is {partial} percent of {total}?</h2>
@@ -45,7 +68,7 @@ export default function Main({ total, partial, percentage, question, closeValues
                     <ul>step 1: {partial}%*{total} = </ul>
                     <ul>step 2: ({partial}:100)*{total} = </ul>
                     <ul>step 3: ({partial}*{total}):100 = </ul>
-                    <ul>step 4: {new Decimal(partial).times(total).toPrecision(4) }:100={percentage}</ul>
+                    <ul>step 4: {new Decimal(partial).times(total).toPrecision(4)}:100={percentage}</ul>
                 </ul>
                 <b>Answer: <span className={styles.green}>{partial} of {total} is {percentage}</span></b>
             </div>
@@ -135,7 +158,7 @@ export async function getServerSideProps(context) {
                     first = false;
                 }
                 else (
-                    total =new Decimal(val)
+                    total = new Decimal(val)
                 )
             }
         }

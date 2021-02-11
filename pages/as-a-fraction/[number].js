@@ -3,13 +3,39 @@ import styles from '../../styles/Home.module.css'
 const Decimal = require('decimal.js')
 import FractionForm from "../../components/FractionForm"
 import Top from "../../components/Top"
+import { useRouter } from 'next/router';
 
 export default function Fraction({ number, numerator, denominator, hNumerator, hDenominator, closeValues, forTable }) {
-
+    const router = useRouter()
+    const meta1 = `Calculate ${number} as a Fraction - How to convert ${number} to a fraction | Decimal to Fraction Converter`
+    const meta2 = `🏆 ${number} or ${number * 100}% as a Fraction: Decimal to Fraction Converter`
+    const meta3 = `🏆 ${number} or ${number * 100}% as a Fraction: Decimal to Fraction Converter`
+    //todo conig .env base
+    const base = 'https://anyconvert.vercel.app' 
+    const currentUrl = `${base}${router.asPath}`
+    const title = `${number} or ${number * 100}% as a Fraction: Decimal to Fraction Converter`
     return (
         <div className={styles.container}>
-
-        <Top text="Fraction Calculator" backButton="true" />
+            <head>
+                <title>{title}</title>
+                <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+                <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta name="description" content={meta1} />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={meta2} />
+                <meta name="twitter:description" content={meta1} />
+                <meta name="twitter:site" content="@" />
+                <meta name="twitter:creator" content="@" />
+                <meta name="twitter:image" content="" />
+                <meta property="og:title" content={meta3} />
+                <meta property="og:description" content={meta1} />
+                <meta property="og:url" content={currentUrl} />
+                <meta property="og:site_name" content={currentUrl} />
+                <meta property="og:type" content="website" />
+                <meta property="og:image" content="" />
+            </head>
+            <Top text="Fraction Calculator" backButton="true" />
 
             <div className={styles.question}>
                 <span>What is {number} as a fraction?</span>
@@ -163,7 +189,7 @@ export async function getServerSideProps(context) {
             res.decimal.push(Number(currentNumber))
             res.simplified.push(fractionDecimal(currentNumber))
             res.fraction.push(fractionOrderTen(currentNumber))
-            res.percentage.push(Math.round(currentNumber*100)/100)
+            res.percentage.push(Math.round(currentNumber * 100) / 100)
         }
         return res
     }
