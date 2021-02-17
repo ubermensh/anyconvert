@@ -3,6 +3,7 @@ import Link from 'next/link';
 import styles from '../styles/Home.module.css'
 import PercentForm from "../components/PercentForm"
 import Top from "../components/Top"
+import Head from 'next/head';
 const Decimal = require('decimal.js')
 
 export default function Main({ total, partial, percentage, question, closeValues }) {
@@ -11,16 +12,16 @@ export default function Main({ total, partial, percentage, question, closeValues
     function formatQuestion(index, isForTotal = false) {
         //todo check speed
         const toReplace = isForTotal ?
-            new Decimal(total).plus(index).plus(1).toFixed(1)
+            new Number(Decimal(total).plus(index).plus(1).toFixed(1))
             :
-            new Decimal(partial).plus(index).plus(1).toFixed(1)
+            new Number(Decimal(partial).plus(index).plus(1).toFixed(1))
         return isForTotal ? question.replace(total, toReplace) : question.replace(partial, toReplace)
     }
     function formatUrl(index, isForTotal = false) {
         const toReplace = isForTotal ?
-            new Decimal(total).plus(index).plus(1).toFixed(1)
+            new Number(Decimal(total).plus(index).plus(1).toFixed(1))
             :
-            new Decimal(partial).plus(index).plus(1).toFixed(1)
+            new Number(Decimal(partial).plus(index).plus(1).toFixed(1))
         return isForTotal ? url.replace(total, toReplace) : url.replace(partial, toReplace)
     }
     const title = `What is ${partial} percent of ${total}? = ${percentage} | How much is ${partial}% of ${total} | Percentage Calculator`
@@ -30,7 +31,8 @@ export default function Main({ total, partial, percentage, question, closeValues
     const currentUrl = `${base}${router.asPath}`
     return (
         <div className={styles.container}>
-            <head>
+
+            <Head>
                 <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -48,40 +50,43 @@ export default function Main({ total, partial, percentage, question, closeValues
                 <meta property="og:site_name" content={currentUrl} />
                 <meta property="og:type" content="website" />
                 <meta property="og:image" content="" />
-            </head>
+            </Head>
             <Top text="Percent Calculator" backButton="true" />
             <div >
                 <h2> What is {partial} percent of {total}?</h2>
             </div>
             <div className={styles.answer}>
                 <h2>
-                    {partial} of {total} is <span className={styles.green}> {percentage} </span>
+                    {partial}% of {total} is <span className={styles.green}> {percentage} </span>
                 </h2>
             </div>
             <div className={styles.cardNoBackground}>
                 <PercentForm />
             </div>
             <div className={styles.card} >
-                <h2>How to calculate {partial} of {total}</h2>
-                {/* todo fix */}
+                <h2>How to calculate {partial} percent of {total}</h2>
                 <ul>
-                    <ul>step 1: {partial}%*{total} = </ul>
-                    <ul>step 2: ({partial}:100)*{total} = </ul>
-                    <ul>step 3: ({partial}*{total}):100 = </ul>
-                    <ul>step 4: {new Decimal(partial).times(total).toPrecision(4)}:100={percentage}</ul>
+                    <li>step 1: {partial}%*{total} = </li>
+                    <li>step 2: ({partial}:100)*{total} = </li>
+                    <li>step 3: ({partial}*{total}):100 = </li>
+                    <li>step 4: {new Decimal(partial).times(total).toPrecision(4)}:100={percentage}</li>
                 </ul>
                 <b>Answer: <span className={styles.green}>{partial} of {total} is {percentage}</span></b>
             </div>
             <div className={styles.card}>
                 <h2>{partial}% of other values:</h2>
                 {/* todo table */}
-                <ul style={{ columnCount: 4, columnGap: "10px" }}>
+                <div className={styles.otherValues}>
+                {/* <ul style={{ columnCount: 4, columnGap: "10px" }}> */}
+                <ul>
                     {Object.keys(closeValues).map((currentTotal, i) => (
                         <li key={i}>
                             <span>{partial}% of {currentTotal} = {closeValues[currentTotal]} </span>
                         </li>
                     ))}
                 </ul>
+                {/* </ul> */}
+                </div>
             </div>
 
             <div className={styles.card} >

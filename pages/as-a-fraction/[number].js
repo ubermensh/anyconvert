@@ -3,6 +3,7 @@ import styles from '../../styles/Home.module.css'
 const Decimal = require('decimal.js')
 import FractionForm from "../../components/FractionForm"
 import Top from "../../components/Top"
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 export default function Fraction({ number, numerator, denominator, hNumerator, hDenominator, closeValues, forTable }) {
@@ -16,7 +17,7 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
     const title = `${number} or ${number * 100}% as a Fraction: Decimal to Fraction Converter`
     return (
         <div className={styles.container}>
-            <head>
+            <Head>
                 <title>{title}</title>
                 <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -34,7 +35,7 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
                 <meta property="og:site_name" content={currentUrl} />
                 <meta property="og:type" content="website" />
                 <meta property="og:image" content="" />
-            </head>
+            </Head>
             <Top text="Fraction Calculator" backButton="true" />
 
             <div className={styles.question}>
