@@ -8,13 +8,14 @@ import { useRouter } from 'next/router';
 
 export default function Fraction({ number, numerator, denominator, hNumerator, hDenominator, closeValues, forTable }) {
     const router = useRouter()
+    const percents = Decimal(number).times(100)
     const meta1 = `Calculate ${number} as a Fraction - How to convert ${number} to a fraction | Decimal to Fraction Converter`
-    const meta2 = `🏆 ${number} or ${number * 100}% as a Fraction: Decimal to Fraction Converter`
-    const meta3 = `🏆 ${number} or ${number * 100}% as a Fraction: Decimal to Fraction Converter`
+    const meta2 = `🏆 ${number} or ${percents}% as a Fraction: Decimal to Fraction Converter`
+    const meta3 = `🏆 ${number} or ${percents}% as a Fraction: Decimal to Fraction Converter`
     //todo conig .env base
     const base = 'https://wizardcalc.com'
     const currentUrl = `${base}${router.asPath}`
-    const title = `${number} or ${number * 100}% as a Fraction: Decimal to Fraction Converter`
+    const title = `${number} or ${percents}% as a Fraction: Decimal to Fraction Converter`
     return (
         <div className={styles.container}>
             <Head>
