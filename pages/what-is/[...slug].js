@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 import Link from 'next/link';
-import styles from '../styles/Home.module.css'
-import PercentForm from "../components/PercentForm"
-import Top from "../components/Top"
+import styles from '../../styles/Home.module.css'
+import PercentForm from "../../components/PercentForm"
+import Top from "../../components/Top"
 import Head from 'next/head';
 const Decimal = require('decimal.js')
 
@@ -27,7 +27,7 @@ export default function Main({ total, partial, percentage, question, closeValues
     const title = `What is ${partial} percent of ${total}? = ${percentage} | How much is ${partial}% of ${total} | Percentage Calculator`
     const meta1 = `Calculate what is ${partial}% of ${total} | Find out how much is ${partial} percent of ${total} with Percentage Calculator`
     const meta2 = `💰  What is ${partial} percent of ${total}? = ${percentage} | How much is ${partial}% of ${total} | Percentage Calculator`
-    const base = 'https://anyconvert.vercel.app'
+    const base = 'https://wizardcalc.com'
     const currentUrl = `${base}${router.asPath}`
     return (
         <div className={styles.container}>

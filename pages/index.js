@@ -19,7 +19,7 @@ export default function Home() {
       <div className={styles.cardNoBackground}>
         <Link href="/as-a-fraction/0.45" className={styles.card}><a>0.45 as a fraction</a></Link>
         <br/>
-        <Link href="/what-is-13-percent-of-100" className={styles.card}><a>what is 13% of 100</a></Link>
+        <Link href="/what-is/13-percent-of-100" className={styles.card}><a>what is 13% of 100</a></Link>
       </div>
     </div>
   )
