@@ -12,7 +12,7 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
     const meta2 = `🏆 ${number} or ${number * 100}% as a Fraction: Decimal to Fraction Converter`
     const meta3 = `🏆 ${number} or ${number * 100}% as a Fraction: Decimal to Fraction Converter`
     //todo conig .env base
-    const base = 'https://anyconvert.vercel.app' 
+    const base = 'https://wizardcalc.com'
     const currentUrl = `${base}${router.asPath}`
     const title = `${number} or ${number * 100}% as a Fraction: Decimal to Fraction Converter`
     return (
