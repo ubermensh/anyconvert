@@ -8,7 +8,7 @@ function PercentForm() {
     const router = useRouter()
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => {
-        router.push(`/what-is-${data.partial}-of-${data.total}`)
+        router.push(`/what-is/${data.partial}-of-${data.total}`)
     };
     return (
         <div id={styles.calculator}>
