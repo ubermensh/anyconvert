@@ -140,10 +140,16 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
     )
 }
 
-export async function getServerSideProps(context) {
-
-    const decimal = new Decimal(context.query.number);
-
+export async function getServerSideProps({query}) {
+    const q = query.number
+    const queryRegex = /^-?.?\d+(\.\d+)?$/
+    const isValidQuery = queryRegex.test(q)
+    if (!isValidQuery) {
+        return {
+            notFound: true,
+        }
+    }
+    const decimal = new Decimal(q);
     function fractionOrderTen(n) {
         let st = String(n).split('.');
         let num, de

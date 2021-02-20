@@ -9,13 +9,14 @@ const Decimal = require('decimal.js')
 export default function Main({ total, partial, percentage, question, closeValues }) {
     const router = useRouter()
     const url = router.query.slug[0];
+    //todo same values! 7 of 7!
     function formatQuestion(index, isForTotal = false) {
-        //todo check speed
         const toReplace = isForTotal ?
             new Number(Decimal(total).plus(index).plus(1).toFixed(1))
             :
             new Number(Decimal(partial).plus(index).plus(1).toFixed(1))
-        return isForTotal ? question.replace(total, toReplace) : question.replace(partial, toReplace)
+        const q = isForTotal ? question.replace(total, toReplace) : question.replace(partial, toReplace)
+        return `what is ${q}`
     }
     function formatUrl(index, isForTotal = false) {
         const toReplace = isForTotal ?
@@ -77,15 +78,15 @@ export default function Main({ total, partial, percentage, question, closeValues
                 <h2>{partial}% of other values:</h2>
                 {/* todo table */}
                 <div className={styles.otherValues}>
-                {/* <ul style={{ columnCount: 4, columnGap: "10px" }}> */}
-                <ul>
-                    {Object.keys(closeValues).map((currentTotal, i) => (
-                        <li key={i}>
-                            <span>{partial}% of {currentTotal} = {closeValues[currentTotal]} </span>
-                        </li>
-                    ))}
-                </ul>
-                {/* </ul> */}
+                    {/* <ul style={{ columnCount: 4, columnGap: "10px" }}> */}
+                    <ul>
+                        {Object.keys(closeValues).map((currentTotal, i) => (
+                            <li key={i}>
+                                <span>{partial}% of {currentTotal} = {closeValues[currentTotal]} </span>
+                            </li>
+                        ))}
+                    </ul>
+                    {/* </ul> */}
                 </div>
             </div>
 
@@ -155,6 +156,14 @@ export async function getServerSideProps(context) {
     let partial, total;
     let first = true;
     const q = context.query.slug[0];
+    const queryRegex = /^-?.?\d+(\.\d+)?-of--?.?\d+(\.?\d+)?$/
+    const isValidQuery = queryRegex.test(q)
+    if (!isValidQuery) {
+        return {
+            notFound: true,
+        }
+    }
+    //todo extract properly!
     q.split('-').map(
         (val) => {
             if (!isNaN(val)) {
@@ -195,12 +204,3 @@ export async function getServerSideProps(context) {
         props
     }
 }
-{/* <section className={styles.card}>
-                        <h3>другими формулами</h3>
-                        <ul>
-                            <li><Link href={`/what-is-${total}-of-${partial}`}><a> What is {total}% of {partial}</a></Link></li>
-                            <li><Link href={`/what-percent-of-${total}-is-${partial}`}><a> What % of {total} is {partial}</a></Link></li>
-                            <li><Link href={`/${total}-is-${partial}-of-what-number`}><a> {total} is {partial} percent of what number? </a></Link></li>
-                            <li><Link href={`/${total}-is-what-percent-of-${partial}`}><a>{total} is what percent of {partial}</a></Link></li>
-                        </ul>
-                    </section> */}
