@@ -62,7 +62,7 @@ export default function Main({ total, partial, percentage, question, closeValues
                 </h2>
             </div>
             <div className={styles.cardNoBackground}>
-                <PercentForm />
+                <PercentForm total={total} />
             </div>
             <div className={styles.card} >
                 <h2>How to calculate {partial} percent of {total}</h2>

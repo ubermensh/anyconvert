@@ -3,8 +3,9 @@ import { useRouter } from 'next/router'
 import { useForm } from "react-hook-form";
 import styles from '../styles/Home.module.css'
 
-function PercentForm() {
+function PercentForm(props) {
 
+    const { total } = props;
     const router = useRouter()
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => {
@@ -22,7 +23,7 @@ function PercentForm() {
                     </div>
                     <div className={styles.column}> <span id={styles.equal}>% of</span> </div>
                     <div className={styles.column}>
-                        <input  id={styles.inputFraction} name="total" type="number" step="any" ref={register({ required: true })} onChange={() => { }} />
+                        <input  id={styles.inputFraction} value={total} name="total" type="number" step="any" ref={register({ required: true })} onChange={() => { }} />
                     </div>
                     <div className={styles.column}> <span id={styles.equal}>?</span> </div>
                     <div className={styles.column}>
