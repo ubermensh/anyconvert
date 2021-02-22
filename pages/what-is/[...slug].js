@@ -164,6 +164,7 @@ export async function getServerSideProps(context) {
         }
     }
     //todo extract properly!
+
     q.split('-').map(
         (val) => {
             if (!isNaN(val)) {

@@ -57,10 +57,8 @@ export default function Home() {
         <Link href="as-a-fraction/.16666667"><a>.16666667 as a fraction </a></Link >
         <Link href="what-is/.24-of-40000"><a>what is .24 of 40000</a></Link >
         <Link href="what-is/220-of-50"><a>what is 220 of 50</a></Link >
-        <Link href="what-is/30.-of-13000"><a>what is 30. of 13000</a></Link >
         <Link href="what-is/1.5-of-175"><a>what is 1.5 of 175</a></Link >
         <Link href="what-is/7-of-3.5"><a>what is 7 of 3.5</a></Link >
-        <Link href="what-is/7.-of-5000"><a>what is 7. of 5000</a></Link >
         <Link href="what-is/25-of-60000"><a>what is 25 of 60000</a></Link >
         <Link href="what-is/25-of-35000"><a>what is 25 of 35000</a></Link >
         <Link href="what-is/80-of-250"><a>what is 80 of 250</a></Link >
@@ -95,7 +93,6 @@ export default function Home() {
         <Link href="what-is/30-of-5000"><a>what is 30 of 5000</a></Link >
         <Link href="as-a-fraction/286"><a>286 as a fraction </a></Link >
         <Link href="what-is/15-of-99.99"><a>what is 15 of 99.99</a></Link >
-        <Link href="what-is/3.-of-2500"><a>what is 3. of 2500</a></Link >
         <Link href="as-a-fraction/1.0833"><a>1.0833 as a fraction </a></Link >
         <Link href="what-is/4-of-7.5"><a>what is 4 of 7.5</a></Link >
         <Link href="as-a-fraction/.815"><a>.815 as a fraction </a></Link >
@@ -173,7 +170,6 @@ export default function Home() {
         <Link href="as-a-fraction/.833333"><a>.833333 as a fraction </a></Link >
         <Link href="what-is/31-of-300"><a>what is 31 of 300</a></Link >
         <Link href="what-is/.5-of-2200"><a>what is .5 of 2200</a></Link >
-        <Link href="what-is/30.-of-2600"><a>what is 30. of 2600</a></Link >
         <Link href="what-is/500-of-35"><a>what is 500 of 35</a></Link >
         <Link href="what-is/.20-of-90000"><a>what is .20 of 90000</a></Link >
         <Link href="what-is/15-of-2400"><a>what is 15 of 2400</a></Link >
@@ -213,11 +209,9 @@ export default function Home() {
         <Link href="what-is/1800-of-100"><a>what is 1800 of 100</a></Link >
         <Link href="as-a-fraction/2.646"><a>2.646 as a fraction </a></Link >
         <Link href="what-is/25-of-11.99"><a>what is 25 of 11.99</a></Link >
-        <Link href="what-is/30.-of-0.85"><a>what is 30. of 0.85</a></Link >
         <Link href="what-is/7-of-120"><a>what is 7 of 120</a></Link >
         <Link href="what-is/1.5-of-239"><a>what is 1.5 of 239</a></Link >
         <Link href="what-is/7-of-125"><a>what is 7 of 125</a></Link >
-        <Link href="what-is/4.-of-80000"><a>what is 4. of 80000</a></Link >
         <Link href="as-a-fraction/354"><a>354 as a fraction </a></Link >
         <Link href="what-is/1.5-of-12.5"><a>what is 1.5 of 12.5</a></Link >
         <Link href="as-a-fraction/.675"><a>.675 as a fraction </a></Link >
