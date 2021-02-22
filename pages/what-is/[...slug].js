@@ -6,24 +6,19 @@ import Top from "../../components/Top"
 import Head from 'next/head';
 const Decimal = require('decimal.js')
 
-export default function Main({ total, partial, percentage, question, closeValues }) {
+export default function Main({ total, partial, percentage, closeValues }) {
     const router = useRouter()
-    const url = router.query.slug[0];
-    //todo same values! 7 of 7!
     function formatQuestion(index, isForTotal = false) {
-        const toReplace = isForTotal ?
-            new Number(Decimal(total).plus(index).plus(1).toFixed(1))
-            :
-            new Number(Decimal(partial).plus(index).plus(1).toFixed(1))
-        const q = isForTotal ? question.replace(total, toReplace) : question.replace(partial, toReplace)
-        return `what is ${q}`
+        return isForTotal ?
+        `what is ${partial} of ${Number(Decimal(total).plus(index).plus(1).toFixed(1))}` 
+        :
+        `what is ${Number(Decimal(partial).plus(index).plus(1).toFixed(1))} of ${total}` 
     }
     function formatUrl(index, isForTotal = false) {
-        const toReplace = isForTotal ?
-            new Number(Decimal(total).plus(index).plus(1).toFixed(1))
-            :
-            new Number(Decimal(partial).plus(index).plus(1).toFixed(1))
-        return isForTotal ? url.replace(total, toReplace) : url.replace(partial, toReplace)
+        return isForTotal ?
+        `/what-is/${partial}-of-${Number(Decimal(total).plus(index).plus(1).toFixed(1))}` 
+        :
+        `what-is/${Decimal(partial).plus(index).plus(1).toFixed(1)}-of-${total}` 
     }
     const title = `What is ${partial} percent of ${total}? = ${percentage} | How much is ${partial}% of ${total} | Percentage Calculator`
     const meta1 = `Calculate what is ${partial}% of ${total} | Find out how much is ${partial} percent of ${total} with Percentage Calculator`
@@ -174,8 +169,6 @@ export async function getServerSideProps(context) {
     let total = new Decimal(Number(q.match(isTotalNegative ?
         regexes.extractNegativeTotal : regexes.extractPositiveTotal)[0]))
 
-    //todo question
-    const question = q.replace(new RegExp('-', 'g'), ' ');
     // const percentage = Number(((100 * partial) / total).toFixed(2))
     let percentage = partial.dividedBy(100).times(total)
     function getCloseValues() {
@@ -196,7 +189,7 @@ export async function getServerSideProps(context) {
     total = Number(total)
     percentage = Number(percentage.toPrecision(4))
 
-    const props = { partial, total, percentage, question, closeValues };
+    const props = { partial, total, percentage, closeValues };
 
     return {
         props
