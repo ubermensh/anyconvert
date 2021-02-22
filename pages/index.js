@@ -10,12 +10,8 @@ export default function Home() {
     <div className={styles.container}>
       <Head> <title>Web Calculator</title> </Head>
       <Top text="Web Calculator" />
-      <div className={styles.cardNoBackground}>
         <FractionForm />
-      </div>
-      <div className={styles.cardNoBackground}>
         <PercentForm />
-      </div>
 
       <div className={styles.cardNoBackground} id={styles.mainLinks}>
         <Link href="what-is/10-of-3000000"><a>what is 10 of 3000000</a></Link>

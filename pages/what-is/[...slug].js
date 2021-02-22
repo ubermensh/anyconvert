@@ -56,9 +56,7 @@ export default function Main({ total, partial, percentage, closeValues }) {
                     {partial}% of {total} is <span className={styles.green}> {percentage} </span>
                 </h2>
             </div>
-            <div className={styles.cardNoBackground}>
                 <PercentForm total={total} />
-            </div>
             <div className={styles.card} >
                 <h2>How to calculate {partial} percent of {total}</h2>
                 <ul>

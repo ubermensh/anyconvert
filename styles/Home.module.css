@@ -45,17 +45,16 @@
 
 .green {
   color: #22BB32;
-
 }
 
 #calculator {
   width: 700px;
-  height: 142px;
-  left: 50px;
-  top: 238px;
+  display: flex;
+  flex-direction: column;
   background: #D6E6FF;
   border-radius: 8px;
   text-align: center;
+  margin-top: 15px;
 }
 
 #calculator .header {
@@ -67,34 +66,19 @@
   align-items: center;
 }
 
-#calculator .formContainer {
+#calculator form {
   justify-content: center;
   align-items: center;
   display: flex;
   height: 95px;
 }
 
-#calculator .row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  /* justify-content: space-around; */
-  justify-content: center;
+#calculator form span {
+  font-size: 24px;
 }
 
-#calculator .column {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  display: flex;
-  padding-right: 10px;
-  padding-left: 10px;
-  /* flex-basis: 100%; */
-  /* flex: 1; */
-}
-
-#calculator #inputFraction {
+#calculator form input {
+  margin: 10px;
   width: 126px;
   height: 34px;
   border: 1px solid #9F9F9F;
@@ -103,23 +87,17 @@
   text-align: center;
 }
 
-#calculator #dropdown {
+#calculator select {
   border-radius: 8px;
-  width: 169px;
   height: 34px;
   font-size: 24px;
-  line-height: 28px;
-  text-align: center;
-  color: #000000;
+  margin-right: 10px;
 }
 
-#calculator #equal {
-  font-size: 30px;
-  text-align: center;
-  color: #000000;
-}
+
 
 #calculator #button {
+  margin-left: 10px;
   width: 126px;
   height: 34px;
   border-radius: 8px;
@@ -132,7 +110,8 @@
   text-align: center;
   color: #FFFFFF;
 }
-#cardTable{
+
+#cardTable {
   width: 90%;
   /* background-color: #F4F9FF; */
   margin: 1rem;
@@ -140,17 +119,21 @@
   /* padding: 1rem; */
   width: 700px;
 }
+
 #valuesTable {
   width: 100%;
   background: #f4f9ff;
 }
 
-#valuesTable th, #valuesTable td {
-  text-align: center; 
+
+#valuesTable th,
+#valuesTable td {
+  text-align: center;
   vertical-align: middle;
   height: 30px;
   /* width: 40px; */
 }
+
 #valuesTable tr:nth-child(even) {
   background-color: #d6e6ff;
 }
@@ -179,9 +162,11 @@
   font-weight: bold;
   text-decoration: underline;
 }
+
 #mainLinks a {
   padding: 5px;
 }
+
 /* 
 .header {
   font-size: 24px;
@@ -206,4 +191,3 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
 }
-

@@ -14,25 +14,16 @@ function PercentForm(props) {
     return (
         <div id={styles.calculator}>
             <div className={styles.header}> <span>Calculate percent</span> </div>
-            <div className={styles.formContainer}>
-                <form className={styles.row} onSubmit={handleSubmit(onSubmit)} >
-
-                    <div className={styles.column}> <span id={styles.equal}>What is</span> </div>
-                    <div className={styles.column}>
-                        <input  id={styles.inputFraction} name="partial" type="number" step="any" ref={register({ required: true })} onChange={() => { }} />
-                    </div>
-                    <div className={styles.column}> <span id={styles.equal}>% of</span> </div>
-                    <div className={styles.column}>
-                        <input  id={styles.inputFraction} defaultValue={total} name="total" type="number" step="any" ref={register({ required: true })} onChange={() => { }} />
-                    </div>
-                    <div className={styles.column}> <span id={styles.equal}>?</span> </div>
-                    <div className={styles.column}>
-                         <button id={styles.button} type="submit" value="Submit">CALCULATE</button>
-                    </div>
-                </form>
-            </div>
+            <form onSubmit={handleSubmit(onSubmit)} >
+                <span>What is</span>
+                <input  name="partial" type="number" step="any" ref={register({ required: true })} onChange={() => { }} />
+                <span>% of</span>
+                <input  defaultValue={total} name="total" type="number" step="any" ref={register({ required: true })} onChange={() => { }} />
+                <span>?</span>
+                <button id={styles.button} type="submit" value="Submit">CALCULATE</button>
+            </form>
         </div>
     )
 }
- 
+
 export default PercentForm;
