@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.css'
 
 function PercentForm(props) {
 
-    const { total } = props;
+    let { total } = props;
     const router = useRouter()
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => {
@@ -23,7 +23,7 @@ function PercentForm(props) {
                     </div>
                     <div className={styles.column}> <span id={styles.equal}>% of</span> </div>
                     <div className={styles.column}>
-                        <input  id={styles.inputFraction} value={total} name="total" type="number" step="any" ref={register({ required: true })} onChange={() => { }} />
+                        <input  id={styles.inputFraction} defaultValue={total} name="total" type="number" step="any" ref={register({ required: true })} onChange={() => { }} />
                     </div>
                     <div className={styles.column}> <span id={styles.equal}>?</span> </div>
                     <div className={styles.column}>

@@ -153,31 +153,28 @@ export default function Main({ total, partial, percentage, question, closeValues
 }
 
 export async function getServerSideProps(context) {
-    let partial, total;
-    let first = true;
+    // let first = true;
     const q = context.query.slug[0];
-    const queryRegex = /^-?.?\d+(\.\d+)?-of--?.?\d+(\.?\d+)?$/
-    const isValidQuery = queryRegex.test(q)
+    const regexes = {
+        validQuery: /^-?.?\d+(\.\d+)?-of--?.?\d+(\.?\d+)?$/,
+        detectNegativeTotal: /^-?.?\d+(\.\d+)?-of--.?\d+(\.?\d+)?$/,
+        extractPartial: /^-?.?\d+(\.\d+)?/,
+        extractNegativeTotal: /-\.?\d+(\.\d+)?$/,
+        extractPositiveTotal: /\.?\d+(\.\d+)?$/,
+    }
+    const isValidQuery = regexes.validQuery.test(q)
     if (!isValidQuery) {
         return {
             notFound: true,
         }
     }
-    //todo extract properly!
+    let partial = new Decimal(Number(q.match(regexes.extractPartial)[0]))
+    // for q like -4-of--100
+    const isTotalNegative = regexes.detectNegativeTotal.test(q)
+    let total = new Decimal(Number(q.match(isTotalNegative ?
+        regexes.extractNegativeTotal : regexes.extractPositiveTotal)[0]))
 
-    q.split('-').map(
-        (val) => {
-            if (!isNaN(val)) {
-                if (first) {
-                    partial = new Decimal(val)
-                    first = false;
-                }
-                else (
-                    total = new Decimal(val)
-                )
-            }
-        }
-    )
+    //todo question
     const question = q.replace(new RegExp('-', 'g'), ' ');
     // const percentage = Number(((100 * partial) / total).toFixed(2))
     let percentage = partial.dividedBy(100).times(total)
