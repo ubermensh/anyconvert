@@ -16,9 +16,9 @@ export default function Main({ total, partial, percentage, closeValues }) {
     }
     function formatUrl(index, isForTotal = false) {
         return isForTotal ?
-        `/what-is/${partial}-of-${Number(Decimal(total).plus(index).plus(1).toFixed(1))}` 
+        `${partial}-of-${Number(Decimal(total).plus(index).plus(1).toFixed(1))}` 
         :
-        `what-is/${Decimal(partial).plus(index).plus(1).toFixed(1)}-of-${total}` 
+        `${Decimal(partial).plus(index).plus(1).toFixed(1)}-of-${total}` 
     }
     const title = `What is ${partial} percent of ${total}? = ${percentage} | How much is ${partial}% of ${total} | Percentage Calculator`
     const meta1 = `Calculate what is ${partial}% of ${total} | Find out how much is ${partial} percent of ${total} with Percentage Calculator`

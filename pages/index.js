@@ -8,12 +8,14 @@ import Top from "../components/Top"
 export default function Home() {
   return (
     <div className={styles.container}>
-      <Head> <title>Web Calculator</title> </Head>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+         <title>Web Calculator</title> </Head>
       <Top text="Web Calculator" />
         <FractionForm />
         <PercentForm />
 
-      <div className={styles.cardNoBackground} id={styles.mainLinks}>
+      <div  id={styles.mainLinks}>
         <Link href="what-is/10-of-3000000"><a>what is 10 of 3000000</a></Link>
         <Link href="what-is/220-of-65"><a>what is 220 of 65</a></Link >
         <Link href="as-a-fraction/.835"><a>.835 as a fraction</a></Link >
