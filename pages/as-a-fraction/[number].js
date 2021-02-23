@@ -71,7 +71,6 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
                 </b>
             </div>
 
-            <div id={styles.cardTable}>
                 <table id={styles.valuesTable}> <thead> <tr>
                     <th>Decimal</th>
                     <th>Simplified Fraction</th>
@@ -87,7 +86,6 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
                             </tr>
                         )}
                     </tbody> </table>
-            </div>
 
 
             <div className={styles.card}>

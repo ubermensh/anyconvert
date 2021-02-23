@@ -110,18 +110,9 @@
 }
 
 
-#cardTable {
-  width: 90%;
-  /* background-color: #F4F9FF; */
-  margin: 1rem;
-  flex-basis: 45%;
-  /* padding: 1rem; */
-  width: 700px;
-}
-
 #valuesTable {
-  width: 100%;
   background: #f4f9ff;
+  width: 700px;
 }
 
 
@@ -138,8 +129,6 @@
 }
 
 #valuesTable th {
-  /* background: #94c6f5; */
-
   background: #92BDFF;
 }
 
@@ -255,13 +244,13 @@
 
   #calculator #button {
     margin-left: 10px;
-    height: 34px;
-    background: #3F8CFF;
-    border: 1px solid #4D76E1;
-    border-radius: 8px;
     width: auto;
     font-size: 10px;
-    text-align: center;
-    color: #FFFFFF;
   }
+
+#valuesTable {
+  width: 100%;
+  background: #f4f9ff;
+}
+
 }
