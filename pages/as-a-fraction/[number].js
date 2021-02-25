@@ -9,13 +9,19 @@ import { useRouter } from 'next/router';
 export default function Fraction({ number, numerator, denominator, hNumerator, hDenominator, closeValues, forTable }) {
     const router = useRouter()
     const percents = Decimal(number).times(100)
+    let forStepByStep;
+    if(number % 1 !== 0) {
+        // forStepByStep = `1${'0'.repeat((number+"").split(".")[1].length)}`
+        forStepByStep = Math.pow(10, (number+"").split(".")[1].length)
+
+    }    
     const meta1 = `Calculate ${number} as a Fraction - How to convert ${number} to a fraction | Decimal to Fraction Converter`
     const meta2 = `🏆 ${number} or ${percents}% as a Fraction: Decimal to Fraction Converter`
     const meta3 = `🏆 ${number} or ${percents}% as a Fraction: Decimal to Fraction Converter`
     //todo conig .env base
     const base = 'https://wizardcalc.com'
     const currentUrl = `${base}${router.asPath}`
-    const title = `${number} or ${percents}% as a Fraction: Decimal to Fraction Converter`
+    const title = `${number} as a fraction - What is ${percents}% as a Fraction: Decimal to Fraction Converter`
     return (
         <div className={styles.container}>
             <Head>
@@ -88,12 +94,12 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
                     </tbody> </table>
 
 
-            <div className={styles.card}>
+            { number % 1 !== 0 && <div className={styles.card}>
                 <h2>Experess {number} as a fraction step by step</h2>
                 <ul>
                     <li> <span className={styles.green}>step 1: </span> Write {number} as <span className={styles.boldUnder}>{number}/1</span></li>
                     <li><span className={styles.green}>step 2: </span>Multiply both numerator ({number}) and denominator (1) by 10 for every number
-                     after the decimal point: hardcoded!!!! {number} × todo/1 × todo= <span className={styles.boldUnder}>{numerator}/{denominator}</span></li>
+                     after the decimal point: {number} × {forStepByStep}/1 × {forStepByStep} = <span className={styles.boldUnder}>{numerator}/{denominator}</span></li>
                     {denominator != hDenominator &&
                         <li> <span className={styles.green}>step 3: </span>Reduce the fraction: <span className={styles.boldUnder}>{hNumerator}/{hDenominator}</span></li>
                     }
@@ -106,7 +112,7 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
                     }
                 </span>
                 </b>
-            </div>
+            </div> } 
             <div className={styles.card}>
                 <h2>Q: What is {number} as a fraction in simplest form?</h2><br />
                 A: {number} as a simplified fraction is {hNumerator}/{hDenominator}
