@@ -20,19 +20,20 @@ export default function Main({ total, partial, percentage, closeValues }) {
         :
         `${Decimal(partial).plus(index).plus(1).toFixed(1)}-of-${total}` 
     }
-    const title = `What is ${partial} percent of ${total}? = ${percentage} | How much is ${partial}% of ${total} | Percentage Calculator`
+    const title = `What is ${partial} percent of ${total}? = ${percentage}. How much is ${partial}% of ${total}`
     const meta1 = `Calculate what is ${partial}% of ${total} | Find out how much is ${partial} percent of ${total} with Percentage Calculator`
     const meta2 = `💰  What is ${partial} percent of ${total}? = ${percentage} | How much is ${partial}% of ${total} | Percentage Calculator`
     const base = 'https://wizardcalc.com'
     const currentUrl = `${base}${router.asPath}`
+    const canonicalUrl = `${base}/what-is/${partial}-of-${total}`
     return (
         <div className={styles.container}>
 
             <Head>
+                <title>{title}</title>
                 <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <title>{title}</title>
                 <meta name="description" content={meta1} />
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content={meta2} />
@@ -46,10 +47,11 @@ export default function Main({ total, partial, percentage, closeValues }) {
                 <meta property="og:site_name" content={currentUrl} />
                 <meta property="og:type" content="website" />
                 <meta property="og:image" content="" />
+                <link rel="canonical" href={canonicalUrl} />
             </Head>
             <Top text="Percent Calculator" backButton="true" />
             <div >
-                <h2> What is {partial} percent of {total}?</h2>
+                <h1> What is {partial} percent of {total}?</h1>
             </div>
             <div className={styles.answer}>
                 <h2>

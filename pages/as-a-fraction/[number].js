@@ -21,7 +21,8 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
     //todo conig .env base
     const base = 'https://wizardcalc.com'
     const currentUrl = `${base}${router.asPath}`
-    const title = `${number} as a fraction - What is ${percents}% as a Fraction: Decimal to Fraction Converter`
+    const canonicalUrl = `${base}/as-a-fraction/${number}`
+    const title = `${number} as a fraction - What is ${percents}% as a Fraction`
     return (
         <div className={styles.container}>
             <Head>
@@ -42,11 +43,13 @@ export default function Fraction({ number, numerator, denominator, hNumerator, h
                 <meta property="og:site_name" content={currentUrl} />
                 <meta property="og:type" content="website" />
                 <meta property="og:image" content="" />
+                <link rel="canonical" href={canonicalUrl} />
             </Head>
             <Top text="Fraction Calculator" backButton="true" />
 
-            <div className={styles.question}>
-                <span>What is {number} as a fraction?</span>
+            {/* <div className={styles.question}> */}
+            <div>
+                <h1>What is {number} as a fraction?</h1>
             </div>
             <div className={styles.answer}>
                 <h2>
